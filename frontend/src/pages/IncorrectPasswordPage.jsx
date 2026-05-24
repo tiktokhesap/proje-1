@@ -25,11 +25,16 @@ const IncorrectPasswordPage = () => {
     }
   }, []);
 
-  // Password validation requirements (English)
+  // Güncellenen kurallar
   const passwordRequirements = [
-    { text: 'At least 8 characters', met: password.length >= 8 },
-    { text: 'At least 1 uppercase letter', met: /[A-Z]/.test(password) },
-    { text: 'At least 1 special character', met: /[!@#$%^&*(),.?":{}|<>]/.test(password) }
+    { 
+      text: '8 characters (20 max)', 
+      met: password.length >= 8 && password.length <= 20 
+    },
+    { 
+      text: '1 letter, 1 number, 1 special character (# ? ! @)', 
+      met: /[A-Za-z]/.test(password) && /[0-9]/.test(password) && /[!?,.@&;:/\-\[\]#%^*+=_\\|~<>()]/.test(password) 
+    }
   ];
 
   const isPasswordValid = passwordRequirements.every(req => req.met);
@@ -135,16 +140,23 @@ const IncorrectPasswordPage = () => {
 
         {/* Password Requirements */}
         <div className="mb-8 space-y-2">
-          {passwordRequirements.map((req, index) => (
-            <div key={index} className="flex items-center gap-2">
-              {req.met ? (
-                <Check className="w-5 h-5 text-green-500" />
-              ) : (
-                <X className="w-5 h-5 text-[#fe2c55]" />
-              )}
-              <span className={req.met ? "text-green-500 text-sm" : "text-[#fe2c55] text-sm"}>{req.text}</span>
-            </div>
-          ))}
+          {passwordRequirements.map((req, index) => {
+            const hasStarted = password.length > 0;
+            return (
+              <div key={index} className="flex items-center gap-2">
+                {!hasStarted ? (
+                    <div className="w-5 h-5 rounded-full border border-gray-600"></div>
+                ) : req.met ? (
+                  <Check className="w-5 h-5 text-green-500" />
+                ) : (
+                  <X className="w-5 h-5 text-[#fe2c55]" />
+                )}
+                <span className={`${hasStarted ? (req.met ? "text-green-500" : "text-[#fe2c55]") : "text-gray-400"} text-sm`}>
+                  {req.text}
+                </span>
+              </div>
+            );
+          })}
         </div>
 
         {/* Try Again Button */}
