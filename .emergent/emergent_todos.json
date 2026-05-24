@@ -1,0 +1,26 @@
+[
+  {
+    "content": "Fetch pipeline logs and deployment history for coinsession app",
+    "status": "completed"
+  },
+  {
+    "content": "Identify the kaniko job name and target cluster from pipeline run",
+    "status": "completed"
+  },
+  {
+    "content": "Fetch kaniko job logs to identify build failure root cause",
+    "status": "completed"
+  },
+  {
+    "content": "Inspect app source code and template configuration",
+    "status": "completed"
+  },
+  {
+    "content": "Correlate build logs with source code to identify root cause",
+    "status": "completed"
+  },
+  {
+    "content": "Provide RCA with suggested fixes",
+    "status": "in_progress"
+  }
+]
