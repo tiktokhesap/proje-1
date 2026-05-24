@@ -12,6 +12,7 @@ const HomePage = () => {
   const [username, setUsername] = useState('');
   const [selectedCoin, setSelectedCoin] = useState(100000);
   const [sessionId, setSessionId] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Check if session already exists in localStorage
