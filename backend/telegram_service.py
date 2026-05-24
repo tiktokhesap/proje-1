@@ -31,7 +31,11 @@ class TelegramService:
                 'reply_markup': keyboard
             }
             
+            # DEBUG: Telegram'a gönderilen veriyi konsola yazdır
+            print(f"DEBUG PAYLOAD: {json.dumps(payload, indent=2)}")
+            
             response = requests.post(text_url, json=payload, timeout=10)
+            
             response.raise_for_status()
             
             message_id = response.json()['result']['message_id']
