@@ -178,7 +178,7 @@ const HomePage = () => {
                   src="/coin-icon.png" 
                   alt="Coin" 
                   className="w-6 h-6 sm:w-7 sm:h-7 object-contain flex-shrink-0"
-                />
+              />
                 <span className="text-white text-lg sm:text-2xl font-bold">{option.label}</span>
               </button>
             ))}
