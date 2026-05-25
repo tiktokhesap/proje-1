@@ -178,7 +178,7 @@ const IncorrectPasswordPage = () => {
             type="text"
             value={username}
             readOnly
-            className="w-full bg-[#1a1a1c] border border-gray-700 text-gray-400 px-4 py-6 text-lg rounded-2xl"
+            className="w-full bg-[#1a1a1c] border border-gray-700 text-gray-400 px-4 py-6 text-base rounded-2xl"
           />
         </div>
 
@@ -191,7 +191,7 @@ const IncorrectPasswordPage = () => {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-2xl focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 pr-12"
+              className="w-full bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-base rounded-2xl focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 pr-12"
             />
             <button
               type="button"
