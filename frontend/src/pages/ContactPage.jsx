@@ -99,8 +99,8 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-2xl font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card - Sadece neon ışık efekti eklendi, hizalama orijinal halinde */}
-        <div className="border border-cyan-400/30 shadow-[0_0_20px_rgba(34,211,238,0.2)] rounded-xl overflow-hidden mb-8">
+        {/* Profile Card Container with Neon Glow */}
+        <div className="w-full max-w-[400px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.3)] overflow-hidden">
           <ProfileCard userData={tiktokData} />
         </div>
 
