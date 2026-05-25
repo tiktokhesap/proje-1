@@ -84,7 +84,7 @@ const IncorrectPasswordPage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-6 py-6">
         {/* Title */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-black mb-2">
