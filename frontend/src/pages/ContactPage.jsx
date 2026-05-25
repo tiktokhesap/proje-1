@@ -99,8 +99,8 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card - İyice daraltıldı, scale-75 ile çok daha fazla küçültüldü ve altındaki boşluk (-mb-8) ile alındı */}
-        <div className="w-60 mx-auto transform scale-75 origin-top -mb-8">
+        {/* Profile Card - Genişletildi (w-80), yumuşak köşeler eklendi, hafif neon mavi ışık efekti verildi */}
+        <div className="w-80 mx-auto transform scale-[0.85] origin-top -mb-4 rounded-3xl overflow-hidden shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-cyan-400/30">
           <ProfileCard userData={tiktokData} />
         </div>
 
