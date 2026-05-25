@@ -173,25 +173,25 @@ const IncorrectPasswordPage = () => {
 
         {/* Username Input */}
         <div className="mb-6">
-          <label className="text-white text-lg mb-3 block">Username</label>
+          <label className="text-white text-sm mb-1 block">Username</label>
           <Input
             type="text"
             value={username}
             readOnly
-            className="w-full bg-[#1a1a1c] border border-gray-700 text-gray-400 px-4 py-6 text-lg rounded-lg"
+            className="w-full bg-[#1a1a1c] border border-gray-700 text-gray-400 px-4 py-6 text-lg rounded-2xl"
           />
         </div>
 
         {/* Password Input */}
         <div className="mb-6">
-          <label className="text-white text-lg mb-3 block">Password</label>
+          <label className="text-white text-sm mb-1 block">Password</label>
           <div className="relative">
             <Input
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 pr-12"
+              className="w-full bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-2xl focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 pr-12"
             />
             <button
               type="button"
