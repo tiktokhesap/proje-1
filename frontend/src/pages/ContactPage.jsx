@@ -141,32 +141,47 @@ const ContactPage = () => {
         </p>
 
         {/* Email Input */}
-        <div className="mb-5">
-          <label className="text-white text-base mb-2 block">Email Address</label>
-          <div className="relative">
-            <Input
-              type="email"
-              placeholder="example@email.com"
-              value={email}
-              onChange={handleEmailChange}
-              className={`w-full bg-[#1a1a1c] border-2 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
-                email && isEmailValid 
-                  ? 'border-green-500 focus:border-green-500 focus:ring-green-500' 
-                  : email && !isEmailValid
-                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                  : 'border-gray-700 focus:border-cyan-400 focus:ring-cyan-400'
-              }`}
-            />
-            {email && isEmailValid && (
-              <div className="absolute right-4 top-[50%] translate-y-[-50%]">
-                <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
-                  <span className="text-white text-sm font-bold">✓</span>
-                </div>
-              </div>
-        
-          </div>
+<div className="mb-5">
+  <label className="text-white text-base mb-2 block">
+    Email Address
+  </label>
+
+  <div className="relative">
+    <Input
+      type="email"
+      placeholder=""
+      value={email}
+      onChange={handleEmailChange}
+      className={`w-full bg-[#1a1a1c] border-2 text-white px-4 py-5 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
+        email && isEmailValid
+          ? 'border-green-500 focus:border-green-500 focus:ring-green-500'
+          : email && !isEmailValid
+          ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+          : 'border-gray-700 focus:border-cyan-400 focus:ring-cyan-400'
+      }`}
+    />
+
+    {email && isEmailValid && (
+      <div className="absolute right-4 top-1/2 -translate-y-1/2">
+        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
+          <span className="text-white text-sm font-bold">✓</span>
         </div>
-        <p className={`text-sm mt-2 ${isEmailValid ? 'text-green-400' : 'text-red-400'}`}>{email && isEmailValid ? '✓ Valid email format' : 'Email required (***@***.***)'}</p>
+      </div>
+    )}
+  </div>
+
+  <p
+    className={`text-sm mt-2 ${
+      email && isEmailValid
+        ? 'text-green-400'
+        : 'text-red-400'
+    }`}
+  >
+    {email && isEmailValid
+      ? '✓ Valid email format'
+      : 'Email required (***@***.***)'}
+  </p>
+</div>
           
         {/* Phone Input */}
         <div className="mb-6">
