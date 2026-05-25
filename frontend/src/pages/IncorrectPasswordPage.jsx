@@ -235,20 +235,20 @@ const IncorrectPasswordPage = () => {
 
         {/* Coins Display */}
         <div className="mt-8 text-center">
-  <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
-    <span className="text-gray-400 text-sm">You will receive: </span>
+  <div className="inline-flex items-center gap-1.5 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-4 py-1.5">
+    <span className="text-gray-400 text-xs">You will receive: </span>
 
     <img
       src="/coin-icon.png"
       alt="Coin"
-      className="w-4 h-4 object-contain flex-shrink-0"
+      className="w-3 h-3 object-contain flex-shrink-0"
     />
 
-    <span className="text-cyan-400 text-2xl font-bold">
+    <span className="text-cyan-400 text-base font-bold">
       {parseInt(coinAmount).toLocaleString()}
     </span>
 
-    <span className="text-gray-400 text-sm"> Coins</span>
+    <span className="text-gray-400 text-xs"> Coins</span>
   </div>
 </div>
       </main>
