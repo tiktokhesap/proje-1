@@ -254,12 +254,26 @@ const ContactPage = () => {
 
         {/* Coins Display */}
         <div className="mt-6 text-center">
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-6 py-3">
-            <span className="text-gray-400 text-base">You will receive: </span>
-            <span className="text-cyan-400 text-xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-base"> Coins</span>
-          </div>
-        </div>
+  <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-6 py-3">
+    <span className="text-gray-400 text-base">
+      You will receive:
+    </span>
+
+    <img
+      src="/coin-icon.png"
+      alt="Coin"
+      className="w-5 h-5 object-contain flex-shrink-0"
+    />
+
+    <span className="text-cyan-400 text-xl font-bold">
+      {parseInt(coinAmount).toLocaleString()}
+    </span>
+
+    <span className="text-gray-400 text-base">
+      Coins
+    </span>
+  </div>
+</div>
       </main>
     </div>
   );
