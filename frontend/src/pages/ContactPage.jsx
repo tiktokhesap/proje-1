@@ -174,6 +174,8 @@ const ContactPage = () => {
           </div>
         </div>
 
+        {!email && <p className="text-gray-500 text-sm mt-2 mb-4">Example: ***@***.***</p>}
+        
         {/* Phone Input */}
         <div className="mb-6">
           <label className="text-white text-base mb-2 block">Phone Number</label>
