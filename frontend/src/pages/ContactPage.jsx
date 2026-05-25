@@ -98,23 +98,23 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card Container - Düzeltilmiş Yerleşim */}
-        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
+        {/* Profile Card Container */}
+        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-4 overflow-hidden">
           {tiktokData ? (
             <>
               {/* Profil Fotoğrafı (Sol) */}
-              <img src={tiktokData.avatar} alt="Profile" className="w-14 h-14 rounded-full border border-cyan-400 object-cover mt-1" />
+              <img src={tiktokData.avatar} alt="Profile" className="w-16 h-16 rounded-full border border-cyan-400 object-cover mt-0.5" />
               
-              {/* Bilgiler (Sağ) */}
-              <div className="flex flex-col flex-1 justify-between">
-                {/* İsim ve Kullanıcı Adı */}
-                <div className="flex flex-col">
-                  <h2 className="text-white font-bold text-sm">{tiktokData.name || tiktokData.username}</h2>
-                  <span className="text-cyan-400 text-xs font-medium">{tiktokData.username}</span>
+              {/* Sağ Bilgi Alanı */}
+              <div className="flex flex-col flex-1 h-full justify-between py-1">
+                {/* İsim ve Kullanıcı Adı (Üst) */}
+                <div className="flex flex-col leading-tight">
+                  <h2 className="text-white font-bold text-lg">{tiktokData.name}</h2>
+                  <span className="text-cyan-400 text-sm font-medium mt-0.5">@{tiktokData.username}</span>
                 </div>
                 
                 {/* İstatistikler (Alt) */}
-                <div className="flex justify-between w-full pb-1 pr-2">
+                <div className="flex justify-between w-full pr-4 pb-0.5">
                   <div className="flex flex-col items-center">
                     <span className="text-white font-bold text-sm">{tiktokData.followers}</span>
                     <span className="text-gray-500 text-[9px] uppercase tracking-wider">Followers</span>
