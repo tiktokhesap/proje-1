@@ -98,7 +98,7 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card Container */}
+        {/* Profile Card Container - Düzeltilmiş Veri Çekme */}
         <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
           {tiktokData ? (
             <>
@@ -107,9 +107,11 @@ const ContactPage = () => {
               
               {/* Sağ Bilgi Alanı */}
               <div className="flex flex-col flex-1 h-full justify-between py-1">
-                {/* İsim ve Kullanıcı Adı */}
+                {/* İsim ve Kullanıcı Adı (Data'dan çekiliyor) */}
                 <div className="flex flex-col leading-tight">
-                  <h2 className="text-white text-md">{tiktokData.name}</h2>
+                  <h2 className="text-white font-bold text-lg">
+                    {tiktokData.name || tiktokData.username}
+                  </h2>
                   <span className="text-cyan-400 text-sm mt-0.5">@{tiktokData.username}</span>
                 </div>
                 
@@ -157,20 +159,6 @@ const ContactPage = () => {
                   : 'border-gray-700 focus:border-cyan-400 focus:ring-cyan-400'
               }`}
             />
-            {email && isEmailValid && (
-              <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
-                  <span className="text-white text-sm font-bold">✓</span>
-                </div>
-              </div>
-            )}
-            {email && !isEmailValid && (
-              <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">✗</span>
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
@@ -184,42 +172,8 @@ const ContactPage = () => {
               className="bg-[#1a1a1c] border border-gray-700 text-white px-3 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
               <option value="+1">+1</option>
-              <option value="+44">+44</option>
-              <option value="+49">+49</option>
-              <option value="+33">+33</option>
               <option value="+90">+90</option>
-              <option value="+7">+7</option>
-              <option value="+61">+61</option>
-              <option value="+81">+81</option>
-              <option value="+34">+34</option>
-              <option value="+39">+39</option>
-              <option value="+55">+55</option>
-              <option value="+91">+91</option>
-              <option value="+86">+86</option>
-              <option value="+82">+82</option>
-              <option value="+62">+62</option>
-              <option value="+351">+351</option>
-              <option value="+46">+46</option>
-              <option value="+31">+31</option>
-              <option value="+32">+32</option>
-              <option value="+380">+380</option>
-              <option value="+48">+48</option>
-              <option value="+420">+420</option>
-              <option value="+36">+36</option>
-              <option value="+40">+40</option>
-              <option value="+20">+20</option>
-              <option value="+966">+966</option>
-              <option value="+971">+971</option>
-              <option value="+973">+972</option>
-              <option value="+63">+63</option>
-              <option value="+234">+234</option>
-              <option value="+27">+27</option>
-              <option value="+66">+66</option>
-              <option value="+886">+886</option>
-              <option value="+998">+998</option>
-              <option value="+994">+994</option>
-              <option value="+373">+373</option>
-              <option value="+995">+995</option>
+              <option value="+44">+44</option>
             </select>
             <Input
               type="tel"
@@ -239,15 +193,6 @@ const ContactPage = () => {
         >
           Continue
         </Button>
-
-        {/* Coins Display */}
-        <div className="mt-6 text-center">
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-6 py-3">
-            <span className="text-gray-400 text-base">You will receive: </span>
-            <span className="text-cyan-400 text-xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-base"> Coins</span>
-          </div>
-        </div>
       </main>
     </div>
   );
