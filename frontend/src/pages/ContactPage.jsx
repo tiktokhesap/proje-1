@@ -99,8 +99,8 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card - Ölçeklendirme (scale) ve daraltma uygulandı */}
-        <div className="max-w-sm mx-auto mb-2 transform scale-90 origin-top">
+        {/* Profile Card - İyice daraltıldı, scale-75 ile çok daha fazla küçültüldü ve altındaki boşluk (-mb-8) ile alındı */}
+        <div className="w-60 mx-auto transform scale-75 origin-top -mb-8">
           <ProfileCard userData={tiktokData} />
         </div>
 
@@ -109,7 +109,7 @@ const ContactPage = () => {
           Please provide your email and phone number for further verification.
         </p>
 
-        {/* Email Input - Biraz büyütüldü (py-5, text-lg) */}
+        {/* Email Input */}
         <div className="mb-5">
           <label className="text-white text-base mb-2 block">Email Address</label>
           <div className="relative">
@@ -151,14 +151,14 @@ const ContactPage = () => {
           )}
         </div>
 
-        {/* Phone Input - Biraz büyütüldü (py-5, text-lg) */}
+        {/* Phone Input */}
         <div className="mb-6">
           <label className="text-white text-base mb-2 block">Phone Number</label>
           <div className="flex gap-3">
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="bg-[#1a1a1c] border border-gray-700 text-white px-4 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="bg-[#1a1a1c] border border-gray-700 text-white px-3 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
               <option value="+1">+1</option>
               <option value="+44">+44</option>
