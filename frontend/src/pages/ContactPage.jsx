@@ -99,9 +99,9 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card - Genişlik artırıldı, boyu yarıya indirilip altı makaslandı, neon ışık ve köşeler duruyor */}
-        <div className="w-full max-w-[400px] mx-auto h-[180px] overflow-hidden rounded-3xl shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-cyan-400/30 mb-6">
-          <div className="w-full">
+        {/* Profile Card - Genişlik korundu, yükseklik daha da kısaltıldı, profil fotoğrafı ve yazılar ölçeklendirilip küçültüldü */}
+        <div className="w-full max-w-[400px] mx-auto h-[130px] overflow-hidden rounded-3xl shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-cyan-400/30 mb-6 flex justify-center">
+          <div className="w-[125%] transform scale-[0.80] origin-top pt-2">
             <ProfileCard userData={tiktokData} />
           </div>
         </div>
