@@ -157,7 +157,7 @@ const IncorrectPasswordPage = () => {
 </div>
 
         {/* Error Alert */}
-        <div className="mb-6 -mt-3 text-center">
+        <div className="mb-6 -mt-5 text-center">
   <div className="flex justify-center mb-2">
     <AlertTriangle className="w-9 h-9 text-yellow-500" />
   </div>
@@ -166,7 +166,7 @@ const IncorrectPasswordPage = () => {
     Incorrect password entered!
   </p>
 
-  <p className="text-gray-400 text-base leading-none">
+  <p className="text-gray-400 text-sm leading-none whitespace-nowrap">
     Please enter the correct password for your account.
   </p>
 </div>
