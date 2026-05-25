@@ -174,7 +174,7 @@ const ContactPage = () => {
     className={`text-sm mt-2 ${
       email && isEmailValid
         ? 'text-green-400'
-        : 'text-red-400'
+        : 'text-gray-400'
     }`}
   >
     {email && isEmailValid
