@@ -152,7 +152,7 @@ const ContactPage = () => {
   <div className="relative">
     <Input
       type="email"
-      placeholder=""
+      placeholder="example@email.com"
       value={email}
       onChange={handleEmailChange}
       className={`w-full bg-[#1a1a1c] border-2 text-white px-4 py-5 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
