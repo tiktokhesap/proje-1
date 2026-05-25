@@ -99,11 +99,9 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Updated Profile Card Container: 400px width, further dikey daraltma yapıldı */}
-        <div className="w-[400px] mx-auto mb-2 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] overflow-hidden flex flex-col items-center py-0">
-          <div className="w-full transform scale-[0.85] origin-top flex flex-col items-center justify-center">
-            <ProfileCard userData={tiktokData} />
-          </div>
+        {/* Updated Profile Card Container: 400px width, 100px height, centered */}
+        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] overflow-hidden flex items-center justify-center bg-[#0a0a0b]">
+          <ProfileCard userData={tiktokData} />
         </div>
 
         {/* Instructions */}
