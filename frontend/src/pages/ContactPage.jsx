@@ -98,8 +98,8 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card Container - Düzeltilmiş Yerleşim */}
-        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-4 overflow-hidden">
+        {/* Profile Card Container */}
+        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
           {tiktokData ? (
             <>
               {/* Profil Fotoğrafı (Sol) */}
@@ -107,10 +107,10 @@ const ContactPage = () => {
               
               {/* Sağ Bilgi Alanı */}
               <div className="flex flex-col flex-1 h-full justify-between py-1">
-                {/* İsim (Beyaz/Kalın) ve Kullanıcı Adı (@ ile) */}
+                {/* İsim ve Kullanıcı Adı (Normal ağırlık) */}
                 <div className="flex flex-col leading-tight">
-                  <h2 className="text-white font-bold text-lg">{tiktokData.name}</h2>
-                  <span className="text-cyan-400 text-sm font-medium mt-0.5">@{tiktokData.username}</span>
+                  <h2 className="text-white text-md">{tiktokData.name}</h2>
+                  <span className="text-cyan-400 text-sm mt-0.5">@{tiktokData.username}</span>
                 </div>
                 
                 {/* İstatistikler (Alt) */}
