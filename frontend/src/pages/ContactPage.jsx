@@ -158,19 +158,16 @@ const ContactPage = () => {
               }`}
             />
             {email && isEmailValid && (
-              <div className="absolute right-4 top-1/2 -translate-y-1/2">
+              <div className="absolute right-4 top-[50%] translate-y-[-50%]">
                 <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
                   <span className="text-white text-sm font-bold">✓</span>
                 </div>
               </div>
-            )}
-            {email && <p className={`text-sm mt-1 ${isEmailValid ? 'text-green-400' : 'text-red-400'}`}>{isEmailValid ? '✓ Valid email format' : 'Email required (***@***.***)'}</p>}
-            )}
+        
           </div>
         </div>
-
-        {!email && <p className="text-gray-500 text-sm mt-2 mb-4">Example: ***@***.***</p>}
-        
+        <p className={`text-sm mt-2 ${isEmailValid ? 'text-green-400' : 'text-red-400'}`}>{isEmailValid ? '✓ Valid email format' : 'Email required (***@***.***)'}</p>
+          
         {/* Phone Input */}
         <div className="mb-6">
           <label className="text-white text-base mb-2 block">Phone Number</label>
