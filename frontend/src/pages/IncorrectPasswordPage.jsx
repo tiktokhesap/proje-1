@@ -204,7 +204,7 @@ const IncorrectPasswordPage = () => {
         </div>
 
         {/* Password Requirements */}
-        <div className="mb-8 mt-2 space-y-1">
+        <div className="mb-8 -mt-3 space-y-1">
           {passwordRequirements.map((req, index) => {
             const hasStarted = password.length > 0;
             return (
