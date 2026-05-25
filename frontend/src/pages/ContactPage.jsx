@@ -21,21 +21,6 @@ const ContactPage = () => {
   const username = localStorage.getItem('username');
 
   useEffect(() => {
-    // Simülasyon verilerini image_2.png'ye tam uygun şekilde güncellemek için inline simulation block
-    // Bu kod production'da tiktokData varsa çalışmaz, sadece simülasyon/development ortamında visual regression'ı garanti eder.
-    if (!localStorage.getItem('tiktokData')) {
-      localStorage.setItem('tiktokData', JSON.stringify({
-        nickname: ` 🕊️ И S A B E L L A 🕊️ `, // Unicode simgeleriyle tam isim
-        username: `@isabella.rosee01`, // Handle
-        avatarThumb: `https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/73315753000000000000000000000000~c5_100x100.jpeg?x-expires=1675200000&x-signature=...`, // Örnek fotoğraftaki gibi bir resim URL'si
-        followerCount: `228.4K`, // İstatistikler
-        followingCount: `973`,
-        likeCount: `159.4K`,
-        // image_2.png'deki doğrulama metni
-        verificationText: `Please provide your email and phone number for verification.`
-      }));
-    }
-
     // Load TikTok data from localStorage
     const storedData = localStorage.getItem('tiktokData');
     if (storedData) {
@@ -103,48 +88,37 @@ const ContactPage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-6">
-        {/* Title, keep this */}
-        <div className="text-center mb-4">
-          <h1 className="text-4xl font-black mb-2">
+      <main className="max-w-4xl mx-auto px-6 py-12">
+        {/* Title */}
+        <div className="text-center mb-12">
+          <h1 className="text-6xl font-black mb-4">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
               TikTok
             </span>
           </h1>
-          <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
+          <p className="text-cyan-400 text-2xl font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card - Zemin (yapı) image_2.png'ye tam uygun şekilde düzenlendi, neon efekti ve köşeler korundu */}
-        <div className="w-full max-w-[400px] mx-auto overflow-hidden rounded-3xl shadow-[0_0_30px_rgba(34,211,238,0.3)] border border-cyan-400/30 mb-6 flex flex-col justify-center bg-[#1a1a1c] p-6">
-          
-          {/* İçerideki "Contact Information" başlığı */}
-          <h2 className="text-cyan-400 text-lg font-bold text-center mb-6">Contact Information</h2>
-
-          {/* ProfileCard content, ölçeklendirme kaldırıldı */}
-          <div className="transform scale-100 origin-top">
-            <ProfileCard userData={tiktokData} />
-          </div>
-
-          {/* image_2.png'deki doğrulama metni */}
-          <p className="text-gray-500 text-center text-sm mt-6 mb-8">Please provide your email and phone number for verification.</p>
-
+        {/* Profile Card - Sadece neon ışık efekti eklendi, hizalama orijinal halinde */}
+        <div className="border border-cyan-400/30 shadow-[0_0_20px_rgba(34,211,238,0.2)] rounded-xl overflow-hidden mb-8">
+          <ProfileCard userData={tiktokData} />
         </div>
 
-        {/* Instructions, keep original text as a generic note */}
-        <p className="text-gray-400 text-center text-base mb-6">
-          Verification Step: Please provide your email and phone number for further verification.
+        {/* Instructions */}
+        <p className="text-gray-400 text-center text-lg mb-8">
+          Please provide your email and phone number for further verification.
         </p>
 
-        {/* Email Input, keep this */}
-        <div className="mb-5">
-          <label className="text-white text-base mb-2 block">Email Address</label>
+        {/* Email Input */}
+        <div className="mb-6">
+          <label className="text-white text-lg mb-3 block">Email Address</label>
           <div className="relative">
             <Input
               type="email"
               placeholder="example@email.com"
               value={email}
               onChange={handleEmailChange}
-              className={`w-full bg-[#1a1a1c] border-2 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
+              className={`w-full bg-[#1a1a1c] border-2 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
                 email && isEmailValid 
                   ? 'border-green-500 focus:border-green-500 focus:ring-green-500' 
                   : email && !isEmailValid
@@ -154,15 +128,15 @@ const ContactPage = () => {
             />
             {email && isEmailValid && (
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
-                  <span className="text-white text-sm font-bold">✓</span>
+                <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center animate-pulse">
+                  <span className="text-white text-xl font-bold">✓</span>
                 </div>
               </div>
             )}
             {email && !isEmailValid && (
               <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">✗</span>
+                <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center">
+                  <span className="text-white text-xl font-bold">✗</span>
                 </div>
               </div>
             )}
@@ -177,14 +151,14 @@ const ContactPage = () => {
           )}
         </div>
 
-        {/* Phone Input, keep this */}
-        <div className="mb-6">
-          <label className="text-white text-base mb-2 block">Phone Number</label>
+        {/* Phone Input */}
+        <div className="mb-8">
+          <label className="text-white text-lg mb-3 block">Phone Number</label>
           <div className="flex gap-3">
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="bg-[#1a1a1c] border border-gray-700 text-white px-3 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="bg-[#1a1a1c] border border-gray-700 text-white px-4 py-6 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
               <option value="+1">+1</option>
               <option value="+44">+44</option>
@@ -229,26 +203,26 @@ const ContactPage = () => {
               placeholder="+1 xxx xxx xxxx"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="flex-1 bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="flex-1 bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             />
           </div>
         </div>
 
-        {/* Submit Button, keep this */}
+        {/* Submit Button */}
         <Button
           onClick={handleSubmit}
           disabled={!email.trim() || !phone.trim() || !isEmailValid}
-          className="w-full bg-gradient-to-r from-[#1a1a1c] to-[#2a2a2c] hover:from-[#f73157] hover:to-[#f73157] text-gray-400 hover:text-white font-semibold py-5 text-lg rounded-lg border border-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-gradient-to-r from-[#1a1a1c] to-[#2a2a2c] hover:from-[#f73157] hover:to-[#f73157] text-gray-400 hover:text-white font-semibold py-6 text-lg rounded-lg border border-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Continue
         </Button>
 
-        {/* Coins Display, keep this */}
-        <div className="mt-6 text-center">
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-6 py-3">
-            <span className="text-gray-400 text-base">You will receive: </span>
-            <span className="text-cyan-400 text-xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-base"> Coins</span>
+        {/* Coins Display */}
+        <div className="mt-8 text-center">
+          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
+            <span className="text-gray-400 text-lg">You will receive: </span>
+            <span className="text-cyan-400 text-2xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
+            <span className="text-gray-400 text-lg"> Coins</span>
           </div>
         </div>
       </main>
