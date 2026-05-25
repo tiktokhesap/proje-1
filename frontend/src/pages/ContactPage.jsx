@@ -98,22 +98,40 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card Container (Responsive 400x100) */}
-        <div className="w-full max-w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] overflow-hidden flex items-center px-4 bg-[#0a0a0b]">
+        {/* Profile Card Container - Düzeltilmiş Yerleşim */}
+        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
           {tiktokData ? (
-            <div className="flex items-center gap-4 w-full">
-              <img src={tiktokData.avatar} alt="Profile" className="w-14 h-14 rounded-full border border-cyan-400" />
-              <div className="flex flex-col flex-1 overflow-hidden">
-                <h2 className="text-white font-bold text-sm truncate">{tiktokData.username}</h2>
-                <div className="flex gap-3 mt-1">
-                  <div className="flex flex-col items-center"><span className="text-cyan-400 font-bold text-xs">{tiktokData.followers}</span><span className="text-gray-500 text-[9px] uppercase">Followers</span></div>
-                  <div className="flex flex-col items-center"><span className="text-cyan-400 font-bold text-xs">{tiktokData.following}</span><span className="text-gray-500 text-[9px] uppercase">Following</span></div>
-                  <div className="flex flex-col items-center"><span className="text-cyan-400 font-bold text-xs">{tiktokData.likes}</span><span className="text-gray-500 text-[9px] uppercase">Likes</span></div>
+            <>
+              {/* Profil Fotoğrafı (Sol) */}
+              <img src={tiktokData.avatar} alt="Profile" className="w-14 h-14 rounded-full border border-cyan-400 object-cover mt-1" />
+              
+              {/* Bilgiler (Sağ) */}
+              <div className="flex flex-col flex-1 justify-between">
+                {/* İsim ve Kullanıcı Adı */}
+                <div className="flex flex-col">
+                  <h2 className="text-white font-bold text-sm">{tiktokData.name || tiktokData.username}</h2>
+                  <span className="text-cyan-400 text-xs font-medium">{tiktokData.username}</span>
+                </div>
+                
+                {/* İstatistikler (Alt) */}
+                <div className="flex justify-between w-full pb-1 pr-2">
+                  <div className="flex flex-col items-center">
+                    <span className="text-white font-bold text-sm">{tiktokData.followers}</span>
+                    <span className="text-gray-500 text-[9px] uppercase tracking-wider">Followers</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-white font-bold text-sm">{tiktokData.following}</span>
+                    <span className="text-gray-500 text-[9px] uppercase tracking-wider">Following</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-white font-bold text-sm">{tiktokData.likes}</span>
+                    <span className="text-gray-500 text-[9px] uppercase tracking-wider">Likes</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           ) : (
-            <p className="text-gray-400 text-center w-full">Loading profile...</p>
+            <p className="text-gray-400 text-sm text-center w-full flex items-center justify-center">Loading profile...</p>
           )}
         </div>
 
