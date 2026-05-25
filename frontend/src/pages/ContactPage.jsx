@@ -108,8 +108,8 @@ const ContactPage = () => {
               {/* Sağ Bilgi Alanı */}
               <div className="flex flex-col flex-1 h-full justify-between py-1">
                 {/* İsim (Beyaz/Kalın) ve Kullanıcı Adı (Mavi/@ ile) */}
-                <div className="flex flex-col leading-tight">
-                  <h2 className="text-white font-bold text-lg">{tiktokData.name}</h2>
+                <div className="flex flex-col leading-none">
+                  <h2 className="text-white font-bold text-sm">{tiktokData.name}</h2>
                   <span className="text-cyan-400 text-sm font-medium mt-0.5">@{tiktokData.username}</span>
                 </div>
                 
