@@ -164,12 +164,7 @@ const ContactPage = () => {
                 </div>
               </div>
             )}
-            {email && !isEmailValid && (
-              <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">✗</span>
-                </div>
-              </div>
+            {email && <p className={`text-sm mt-1 ${isEmailValid ? 'text-green-400' : 'text-red-400'}`}>{isEmailValid ? '✓ Valid email format' : 'Email required (***@***.***)'}</p>}
             )}
           </div>
         </div>
