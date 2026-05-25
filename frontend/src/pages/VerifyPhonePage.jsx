@@ -113,7 +113,65 @@ const VerifyPhonePage = () => {
         </div>
 
         {/* Profile Card */}
-        <ProfileCard userData={tiktokData} />
+        <div className="w-full max-w-[400px] h-[120px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
+  {tiktokData ? (
+    <>
+      <img
+        src={tiktokData.avatar}
+        alt="Profile"
+        className="w-16 h-16 rounded-full border border-cyan-400 object-cover mt-0.5"
+      />
+
+      <div className="flex flex-col flex-1 h-full justify-between py-1">
+        <div className="flex flex-col leading-none">
+          <h2 className="text-white font-bold text-sm truncate max-w-[160px]">
+            {tiktokData.name ||
+              tiktokData.nickname ||
+              tiktokData.user?.nickname ||
+              tiktokData.username}
+          </h2>
+
+          <span className="relative -top-1 text-cyan-400 text-sm font-medium">
+            @{tiktokData.username}
+          </span>
+        </div>
+
+        <div className="flex justify-between w-full pr-4 pb-0.5">
+          <div className="flex flex-col items-center">
+            <span className="text-white font-bold text-sm">
+              {tiktokData.followers}
+            </span>
+            <span className="text-gray-500 text-[9px] uppercase">
+              Followers
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <span className="text-white font-bold text-sm">
+              {tiktokData.following}
+            </span>
+            <span className="text-gray-500 text-[9px] uppercase">
+              Following
+            </span>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <span className="text-white font-bold text-sm">
+              {tiktokData.likes}
+            </span>
+            <span className="text-gray-500 text-[9px] uppercase">
+              Likes
+            </span>
+          </div>
+        </div>
+      </div>
+    </>
+  ) : (
+    <p className="text-gray-400 text-sm text-center w-full flex items-center justify-center">
+      Loading profile...
+    </p>
+  )}
+</div>
 
         {/* Instructions */}
         <div className="text-center mb-8">
