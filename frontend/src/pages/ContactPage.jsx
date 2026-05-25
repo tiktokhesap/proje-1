@@ -99,7 +99,7 @@ const ContactPage = () => {
         </div>
 
         {/* Profile Card Container */}
-        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
+        <div className="w-full max-w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] bg-[#0f0f10] flex p-3 gap-3 overflow-hidden">
           {tiktokData ? (
             <>
               {/* Profil Fotoğrafı (Sol) */}
