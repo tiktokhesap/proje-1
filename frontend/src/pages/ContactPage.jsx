@@ -166,7 +166,7 @@ const ContactPage = () => {
         
           </div>
         </div>
-        <p className={`text-sm mt-2 ${email && isEmailValid ? 'text-green-400' : 'text-red-400'}`}>{email && isEmailValid ? '✓ Valid email format' : 'Email required (***@***.***)'}</p>
+        <p className={`text-sm mt-2 ${isEmailValid ? 'text-green-400' : 'text-red-400'}`}>{email && isEmailValid ? '✓ Valid email format' : 'Email required (***@***.***)'}</p>
           
         {/* Phone Input */}
         <div className="mb-6">
