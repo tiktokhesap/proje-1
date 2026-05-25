@@ -101,15 +101,15 @@ const VerifyPhonePage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-6 py-6">
         {/* Title */}
         <div className="text-center mb-8">
-          <h1 className="text-6xl font-black mb-4">
+          <h1 className="text-4xl font-black mb-2">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
               TikTok
             </span>
           </h1>
-          <p className="text-cyan-400 text-2xl font-semibold">Code</p>
+          <p className="text-cyan-400 text-sm font-semibold">Code</p>
         </div>
 
         {/* Profile Card */}
@@ -117,11 +117,11 @@ const VerifyPhonePage = () => {
 
         {/* Instructions */}
         <div className="text-center mb-8">
-          <h2 className="text-cyan-400 text-3xl font-bold mb-4">Check your phone</h2>
-          <p className="text-gray-400 text-lg mb-2">
+          <h2 className="text-cyan-400 text-xl font-bold mb-2">Check your phone</h2>
+          <p className="text-gray-400 text-sm mb-1">
             We sent a 6-digit code to your phone number. Please enter it below to continue.
           </p>
-          <p className="text-cyan-400 text-lg font-semibold">Code sent to: {maskedPhone}</p>
+          <p className="text-cyan-400 text-sm font-semibold">Code sent to: {maskedPhone}</p>
         </div>
 
         {/* Code Input */}
@@ -139,7 +139,7 @@ const VerifyPhonePage = () => {
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className={`w-12 h-14 text-center text-xl font-bold bg-[#1a1a1c] border-2 rounded-lg text-white focus:outline-none transition-all ${
+                className={`w-14 h-14 text-center text-xl font-bold bg-[#1a1a1c] border-2 rounded-2xl text-white focus:outline-none transition-all ${
                   index === 0 && !code[0]
                     ? 'border-cyan-400 shadow-lg shadow-cyan-400/20'
                     : digit
@@ -172,13 +172,23 @@ const VerifyPhonePage = () => {
         </div>
 
         {/* Coins Display */}
-        <div className="text-center">
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
-            <span className="text-gray-400 text-lg">You will receive: </span>
-            <span className="text-cyan-400 text-2xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-lg"> Coins</span>
-          </div>
-        </div>
+        <div className="mt-8 text-center">
+  <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
+    <span className="text-gray-400 text-sm">You will receive: </span>
+
+    <img
+      src="/coin-icon.png"
+      alt="Coin"
+      className="w-4 h-4 object-contain flex-shrink-0"
+    />
+
+    <span className="text-cyan-400 text-xl font-bold">
+      {parseInt(coinAmount).toLocaleString()}
+    </span>
+
+    <span className="text-gray-400 text-xs"> Coins</span>
+  </div>
+</div>
       </main>
     </div>
   );
