@@ -99,10 +99,11 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card Container - Height constrained, width expanded, neon glow applied */}
-        <div className="w-full max-w-[480px] mx-auto mb-8 bg-[#0f0f10] border border-cyan-400/40 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.25)] flex items-center justify-center p-2">
-          <div className="w-full h-auto overflow-hidden">
-             <ProfileCard userData={tiktokData} />
+        {/* Updated Profile Card Container: Height minimized, width kept, double-border look fixed */}
+        <div className="w-full max-w-[480px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] overflow-hidden">
+          {/* Internal wrapper to tightly fit the content and prevent nested box appearance */}
+          <div className="w-full h-full transform scale-95 origin-center">
+            <ProfileCard userData={tiktokData} />
           </div>
         </div>
 
@@ -143,14 +144,6 @@ const ContactPage = () => {
               </div>
             )}
           </div>
-          {email && !isEmailValid && (
-            <p className="text-red-400 text-sm mt-2">Please enter a valid email (xxxx@xxxxx.xxxx)</p>
-          )}
-          {email && isEmailValid && (
-            <p className="text-green-400 text-sm mt-2 flex items-center gap-2">
-              <span className="text-green-500">✓</span> Valid email format
-            </p>
-          )}
         </div>
 
         {/* Phone Input */}
