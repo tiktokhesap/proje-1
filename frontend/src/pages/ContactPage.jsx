@@ -90,7 +90,7 @@ const ContactPage = () => {
       {/* Main Content */}
       <main className="max-w-4xl mx-auto px-6 py-6">
         {/* Title */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <h1 className="text-4xl font-black mb-2">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
               TikTok
@@ -99,8 +99,8 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Profile Card */}
-        <div className="max-w-md mx-auto mb-6">
+        {/* Profile Card - Ölçeklendirme (scale) ve daraltma uygulandı */}
+        <div className="max-w-sm mx-auto mb-2 transform scale-90 origin-top">
           <ProfileCard userData={tiktokData} />
         </div>
 
@@ -109,7 +109,7 @@ const ContactPage = () => {
           Please provide your email and phone number for further verification.
         </p>
 
-        {/* Email Input */}
+        {/* Email Input - Biraz büyütüldü (py-5, text-lg) */}
         <div className="mb-5">
           <label className="text-white text-base mb-2 block">Email Address</label>
           <div className="relative">
@@ -118,7 +118,7 @@ const ContactPage = () => {
               placeholder="example@email.com"
               value={email}
               onChange={handleEmailChange}
-              className={`w-full bg-[#1a1a1c] border-2 text-white placeholder:text-gray-500 px-4 py-4 text-base rounded-lg focus:ring-1 pr-12 transition-all ${
+              className={`w-full bg-[#1a1a1c] border-2 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:ring-1 pr-12 transition-all ${
                 email && isEmailValid 
                   ? 'border-green-500 focus:border-green-500 focus:ring-green-500' 
                   : email && !isEmailValid
@@ -151,14 +151,14 @@ const ContactPage = () => {
           )}
         </div>
 
-        {/* Phone Input */}
+        {/* Phone Input - Biraz büyütüldü (py-5, text-lg) */}
         <div className="mb-6">
           <label className="text-white text-base mb-2 block">Phone Number</label>
           <div className="flex gap-3">
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="bg-[#1a1a1c] border border-gray-700 text-white px-3 py-4 text-base rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="bg-[#1a1a1c] border border-gray-700 text-white px-4 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
               <option value="+1">+1</option>
               <option value="+44">+44</option>
@@ -203,7 +203,7 @@ const ContactPage = () => {
               placeholder="+1 xxx xxx xxxx"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="flex-1 bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-4 text-base rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="flex-1 bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             />
           </div>
         </div>
