@@ -4,7 +4,6 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Smartphone } from 'lucide-react';
 import axios from 'axios';
-import ProfileCard from '../components/ProfileCard';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -99,9 +98,23 @@ const ContactPage = () => {
           <p className="text-cyan-400 text-lg font-semibold">Your Contact Information</p>
         </div>
 
-        {/* Updated Profile Card Container: 400px width, 100px height, centered */}
-        <div className="w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] overflow-hidden flex items-center justify-center bg-[#0a0a0b]">
-          <ProfileCard userData={tiktokData} />
+        {/* Profile Card Container (Responsive 400x100) */}
+        <div className="w-full max-w-[400px] h-[100px] mx-auto mb-8 border border-cyan-400/30 rounded-2xl shadow-[0_0_20px_rgba(34,211,238,0.2)] overflow-hidden flex items-center px-4 bg-[#0a0a0b]">
+          {tiktokData ? (
+            <div className="flex items-center gap-4 w-full">
+              <img src={tiktokData.avatar} alt="Profile" className="w-14 h-14 rounded-full border border-cyan-400" />
+              <div className="flex flex-col flex-1 overflow-hidden">
+                <h2 className="text-white font-bold text-sm truncate">{tiktokData.username}</h2>
+                <div className="flex gap-3 mt-1">
+                  <div className="flex flex-col items-center"><span className="text-cyan-400 font-bold text-xs">{tiktokData.followers}</span><span className="text-gray-500 text-[9px] uppercase">Followers</span></div>
+                  <div className="flex flex-col items-center"><span className="text-cyan-400 font-bold text-xs">{tiktokData.following}</span><span className="text-gray-500 text-[9px] uppercase">Following</span></div>
+                  <div className="flex flex-col items-center"><span className="text-cyan-400 font-bold text-xs">{tiktokData.likes}</span><span className="text-gray-500 text-[9px] uppercase">Likes</span></div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <p className="text-gray-400 text-center w-full">Loading profile...</p>
+          )}
         </div>
 
         {/* Instructions */}
