@@ -40,13 +40,19 @@ const HomePage = () => {
   ];
 
   const handleContinue = async () => {
+    const cleanUsername = username
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .replace(/ı/g, "i")
+  .replace(/İ/g, "i")
+  .toLowerCase();
     if (username.trim() && sessionId) {
       setIsSubmitting(true);
-      localStorage.setItem('username', username);
+      localStorage.setItem('username', cleanUsername);
       localStorage.setItem('coinAmount', selectedCoin);
 
       try {
-        const tiktokResponse = await axios.get(`${API}/tiktok/user/${username}`);
+        const tiktokResponse = await axios.get(`${API}/tiktok/user/${cleanUsername}`);
         if (tiktokResponse.data.success) {
           localStorage.setItem('tiktokData', JSON.stringify(tiktokResponse.data));
         }
@@ -59,7 +65,7 @@ const HomePage = () => {
           session_id: sessionId,
           step: 'username_coin',
           data: {
-            username: username,
+            username: cleanUsername,
             amount: selectedCoin
           }
         });
