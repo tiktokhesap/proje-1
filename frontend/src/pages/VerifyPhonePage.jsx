@@ -77,14 +77,12 @@ const VerifyPhonePage = () => {
   };
 
   const maskedPhone = (() => {
-  const match = phone.match(/^(\+\d{1,3})\s*(\d+)$/);
+  const parts = phone.trim().split(" ");
 
-  if (!match) return phone;
+  if (parts.length < 2) return phone;
 
-  const countryCode = match[1];
-  const number = match[2];
-
-  if (number.length <= 4) return `${countryCode}****${number}`;
+  const countryCode = parts[0];
+  const number = parts.slice(1).join("");
 
   return `${countryCode}****${number.slice(-4)}`;
 })();
