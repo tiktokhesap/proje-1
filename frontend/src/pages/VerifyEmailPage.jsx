@@ -201,7 +201,7 @@ const VerifyEmailPage = () => {
   Continue
 </Button>
 
-<div className="text-center mb-8">
+<div className="text-center mb-2">
   <span className="text-gray-400 text-sm">Didn't receive the code? </span>
   <button
     onClick={handleResend}
@@ -211,7 +211,7 @@ const VerifyEmailPage = () => {
   </button>
 </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-6 text-center">
           <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
   <span className="text-gray-400 text-sm">You will receive: </span>
 
