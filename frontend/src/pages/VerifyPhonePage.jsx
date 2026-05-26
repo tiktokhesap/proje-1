@@ -76,13 +76,11 @@ const VerifyPhonePage = () => {
     inputRefs.current[0]?.focus();
   };
 
-const cleanPhone = phone.replace(/\s+/g, "");
-
-const countryCode = cleanPhone.match(/^\+\d{1,3}/)?.[0] || "";
-const fullNumber = cleanPhone.slice(countryCode.length);
+const [countryCode, ...rest] = phone.trim().split(" ");
+const fullNumber = rest.join("");
 
 const maskedPhone =
-  countryCode + "****" + fullNumber.slice(-4);
+  `${countryCode}****${fullNumber.slice(-4)}`;
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0a0b] via-[#121214] to-[#0a0a0b]">
