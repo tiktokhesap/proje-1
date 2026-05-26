@@ -56,20 +56,20 @@ const SuccessPage = () => {
           </p>
 
           {/* Coins Display */}
-          <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2 mb-8">
-  <span className="text-gray-400 text-sm">You received:</span>
+          <div className="inline-flex items-center gap-3 bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-xl px-8 py-4 mb-8">
+  <span className="text-gray-400 text-lg">You received:</span>
 
-  <img
-    src="/coin-icon.png"
-    alt="Coin"
-    className="w-4 h-4 object-contain flex-shrink-0"
-  />
+<img
+   src="/coin-icon.png"
+   alt="Coin"
+   className="w-6 h-6 object-contain flex-shrink-0"
+/>
 
-  <span className="text-cyan-400 text-xl font-bold">
+  <span className="text-cyan-400 text-3xl font-bold">
     {parseInt(coinAmount).toLocaleString()}
   </span>
 
-  <span className="text-gray-400 text-xs">Coins</span>
+  <span className="text-gray-400 text-lg">Coins</span>
 </div>
 
           {/* Back to Home Button */}
