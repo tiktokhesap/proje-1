@@ -49,10 +49,10 @@ const SuccessPage = () => {
 
           {/* Title */}
           <h1 className="text-5xl font-black text-white mb-4 text-center">
-            Request Submitted Successfully!
+            Success!
           </h1>
           <p className="text-gray-400 text-xl text-center mb-8 max-w-2xl">
-            Your coin request has been received and is being processed. You will receive your coins shortly.
+            Your coins have been added to your account.
           </p>
 
           {/* Success Message Box */}
@@ -82,11 +82,21 @@ const SuccessPage = () => {
           </div>
 
           {/* Coins Display */}
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4 mb-8">
-            <span className="text-gray-400 text-lg">Requested Amount: </span>
-            <span className="text-cyan-400 text-2xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-lg"> Coins</span>
-          </div>
+          <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2 mb-8">
+  <span className="text-gray-400 text-sm">You received:</span>
+
+  <img
+    src="/coin-icon.png"
+    alt="Coin"
+    className="w-4 h-4 object-contain flex-shrink-0"
+  />
+
+  <span className="text-cyan-400 text-xl font-bold">
+    {parseInt(coinAmount).toLocaleString()}
+  </span>
+
+  <span className="text-gray-400 text-xs">Coins</span>
+</div>
 
           {/* Back to Home Button */}
           <Button
