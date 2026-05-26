@@ -111,7 +111,7 @@ const HomePage = () => {
             type="text"
             placeholder="@username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.toLowerCase())}
             className="w-full bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
           />
         </div>
