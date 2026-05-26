@@ -103,7 +103,7 @@ const SuccessPage = () => {
             onClick={handleBackHome}
             className="bg-gradient-to-r from-[#fe2c55] to-[#ff4266] hover:from-[#ff4266] hover:to-[#fe2c55] text-white font-semibold px-12 py-6 text-lg rounded-lg transition-all shadow-lg shadow-pink-500/20"
           >
-            Make Another Request
+            Check your TikTok balance
           </Button>
         </div>
       </main>
