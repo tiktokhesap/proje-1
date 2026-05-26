@@ -14,6 +14,11 @@ const VerifyPhonePage = () => {
   const inputRefs = useRef([]);
   const coinAmount = localStorage.getItem('coinAmount') || '100,000';
   const phone = localStorage.getItem('phone') || '+1xxxxxxxx8521';
+  const parts = phone.match(/^(\+\d{1,3})\s?(\d+)$/);
+
+  const maskedPhone = parts
+  ? `${parts[1]}****${parts[2].slice(-4)}`
+  : phone;
   console.log("PHONE GELEN:", phone);
   const sessionId = localStorage.getItem('sessionId');
   const username = localStorage.getItem('username') || 'user';
@@ -77,14 +82,6 @@ const VerifyPhonePage = () => {
     inputRefs.current[0]?.focus();
   };
 
-const cleanPhone = phone.replace(/\s+/g, "");
-
-const maskedPhone =
-  cleanPhone.replace(
-    /^(\+\d{1,3})(\d+)(\d{4})$/,
-    "$1****$3"
-  );
-  
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0a0b] via-[#121214] to-[#0a0a0b]">
       {/* Header */}
