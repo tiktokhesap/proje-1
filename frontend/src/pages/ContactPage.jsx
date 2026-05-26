@@ -44,7 +44,7 @@ const ContactPage = () => {
   if (isLoading) return;
   setIsLoading(true);
     if (email.trim() && phone.trim() && isEmailValid) {
-      const fullPhone = `${countryCode}${phone}`;
+      const fullPhone = `${countryCode} ${phone}`;
       localStorage.setItem('email', email);
       localStorage.setItem('phone', fullPhone);
 
