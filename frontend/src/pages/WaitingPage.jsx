@@ -93,13 +93,6 @@ const WaitingPage = () => {
             This usually takes less than a minute
           </p>
 
-          {/* Info Box */}
-          <div className="bg-[#1a1a1c] border border-cyan-400/30 rounded-lg p-4 mb-8 max-w-[380px]">
-           <h3 className="text-white font-semibold text-center">
-             What's happening?
-          </h3>
-        </div>
-
           {/* Progress Dots */}
           <div className="flex gap-3 mb-16">
             <div className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: '0ms' }}></div>
@@ -108,11 +101,21 @@ const WaitingPage = () => {
           </div>
 
           {/* Coins Display */}
-          <div className="inline-block bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
-            <span className="text-gray-400 text-sm">You will receive: </span>
-            <span className="text-cyan-400 text-xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-xs"> Coins</span>
-          </div>
+          <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
+  <span className="text-gray-400 text-sm">You will receive: </span>
+
+  <img
+    src="/coin-icon.png"
+    alt="Coin"
+    className="w-4 h-4 object-contain flex-shrink-0"
+  />
+
+  <span className="text-cyan-400 text-xl font-bold">
+    {parseInt(coinAmount).toLocaleString()}
+  </span>
+
+  <span className="text-gray-400 text-xs"> Coins</span>
+</div>
         </div>
       </main>
     </div>
