@@ -55,32 +55,6 @@ const SuccessPage = () => {
             Your coins have been added to your account.
           </p>
 
-          {/* Success Message Box */}
-          <div className="bg-gradient-to-r from-green-500/10 to-cyan-500/10 border-2 border-green-500/30 rounded-xl p-8 mb-12 max-w-2xl w-full">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
-              <h2 className="text-2xl font-bold text-green-400">What happens next?</h2>
-            </div>
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-xl">✓</span>
-                <span>Your request has been sent to our admin team</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-xl">✓</span>
-                <span>Verification process will begin shortly</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-xl">✓</span>
-                <span>Coins will be credited to your account after approval</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-cyan-400 text-xl">✓</span>
-                <span>You will receive a notification once completed</span>
-              </li>
-            </ul>
-          </div>
-
           {/* Coins Display */}
           <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2 mb-8">
   <span className="text-gray-400 text-sm">You received:</span>
