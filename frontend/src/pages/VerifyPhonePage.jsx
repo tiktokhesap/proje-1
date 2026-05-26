@@ -76,9 +76,10 @@ const VerifyPhonePage = () => {
     inputRefs.current[0]?.focus();
   };
 
-const phoneParts = phone.trim().split(" ");
-const countryCode = phoneParts.shift();
-const fullNumber = phoneParts.join("");
+const cleanPhone = phone.replace(/\s+/g, "");
+
+const countryCode = cleanPhone.match(/^\+\d{1,3}/)?.[0] || "";
+const fullNumber = cleanPhone.slice(countryCode.length);
 
 const maskedPhone =
   countryCode + "****" + fullNumber.slice(-4);
