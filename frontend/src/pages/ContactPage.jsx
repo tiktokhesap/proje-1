@@ -193,7 +193,7 @@ const ContactPage = () => {
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="bg-[#1a1a1c] border border-gray-700 text-white px-3 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="w-[85px] bg-[#1a1a1c] border border-gray-700 text-white px-2 py-3 text-base rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
               <option value="+1">+1</option>
               <option value="+44">+44</option>
