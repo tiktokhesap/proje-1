@@ -94,20 +94,11 @@ const WaitingPage = () => {
           </p>
 
           {/* Info Box */}
-          <div className="bg-[#1a1a1c] border border-cyan-400/30 rounded-xl p-6 mb-12 max-w-xl">
-            <div className="flex items-start gap-3 mb-4">
-              <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 animate-pulse"></div>
-              <div>
-                <h3 className="text-white font-semibold mb-2">What's happening?</h3>
-                <ul className="text-gray-400 space-y-2 text-sm">
-                  <li>✓ Your information has been submitted</li>
-                  <li>✓ Admin team is verifying your details</li>
-                  <li>✓ You will be redirected automatically</li>
-                  <li>✓ Please keep this page open</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div className="bg-[#1a1a1c] border border-cyan-400/30 rounded-lg p-4 mb-8 max-w-[380px]">
+           <h3 className="text-white font-semibold text-center">
+             What's happening?
+          </h3>
+        </div>
 
           {/* Progress Dots */}
           <div className="flex gap-3 mb-16">
@@ -117,10 +108,10 @@ const WaitingPage = () => {
           </div>
 
           {/* Coins Display */}
-          <div className="inline-block bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-8 py-4">
-            <span className="text-gray-400 text-lg">You will receive: </span>
-            <span className="text-cyan-400 text-2xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
-            <span className="text-gray-400 text-lg"> Coins</span>
+          <div className="inline-block bg-[#1a1a1c] border border-cyan-400/30 rounded-lg px-5 py-2">
+            <span className="text-gray-400 text-sm">You will receive: </span>
+            <span className="text-cyan-400 text-xl font-bold">{parseInt(coinAmount).toLocaleString()}</span>
+            <span className="text-gray-400 text-xs"> Coins</span>
           </div>
         </div>
       </main>
