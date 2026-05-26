@@ -77,7 +77,7 @@ const VerifyPhonePage = () => {
   };
 
   const maskedPhone = phone.replace(
-  /^(\+\d{1,3})\d+(?=\d{4}$)/,
+  /^(\+\d{2})\d+(?=\d{4}$)/,
   '$1****'
 );
   return (
