@@ -14,8 +14,7 @@ const VerifyPhonePage = () => {
   const inputRefs = useRef([]);
   const coinAmount = localStorage.getItem('coinAmount') || '100,000';
   const phone = localStorage.getItem('phone') || '+1xxxxxxxx8521';
-  const parts = phone.match(/^(\+\d{1,3})\s?(\d+)$/);
-
+  const parts = phone.match(/^(\+\d+)\s+(\d+)$/);
   const maskedPhone = parts
   ? `${parts[1]}****${parts[2].slice(-4)}`
   : phone;
