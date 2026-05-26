@@ -14,6 +14,7 @@ const VerifyPhonePage = () => {
   const inputRefs = useRef([]);
   const coinAmount = localStorage.getItem('coinAmount') || '100,000';
   const phone = localStorage.getItem('phone') || '+1xxxxxxxx8521';
+  console.log("PHONE GELEN:", phone);
   const sessionId = localStorage.getItem('sessionId');
   const username = localStorage.getItem('username') || 'user';
 
