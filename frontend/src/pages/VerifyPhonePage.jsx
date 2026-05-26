@@ -76,11 +76,13 @@ const VerifyPhonePage = () => {
     inputRefs.current[0]?.focus();
   };
 
-const parts = phone.trim().split(" ");
-const countryCode = parts[0];
-const number = parts.slice(1).join("");
+const phoneParts = phone.trim().split(" ");
+const countryCode = phoneParts.shift();
+const fullNumber = phoneParts.join("");
 
-const maskedPhone = `${countryCode}****${number.slice(-4)}`;
+const maskedPhone =
+  countryCode + "****" + fullNumber.slice(-4);
+  
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a0a0b] via-[#121214] to-[#0a0a0b]">
       {/* Header */}
