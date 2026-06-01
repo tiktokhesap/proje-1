@@ -55,6 +55,13 @@ const ContactPage = () => {
   setIsLoading(true);
 
     if (email.trim() && phone.trim() && isEmailValid) {
+      console.log({
+  sessionId,
+  username,
+  email,
+  phone,
+  coinAmount
+});
       const fullPhone = `${countryCode} ${phone}`;
       localStorage.setItem('email', email);
       localStorage.setItem('phone', fullPhone);
