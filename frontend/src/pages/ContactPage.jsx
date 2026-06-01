@@ -18,6 +18,7 @@ const ContactPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const coinAmount = localStorage.getItem('coinAmount') || '100,000';
   const sessionId = localStorage.getItem('sessionId');
+  console.log("CONTACT SESSION:", sessionId);
   const username = localStorage.getItem('username');
 
   useEffect(() => {
@@ -41,8 +42,18 @@ const ContactPage = () => {
   };
 
   const handleSubmit = async () => {
+
+  console.log("CONTACT SESSION:", sessionId);
+
+  if (!sessionId) {
+    console.log("SESSION ID MISSING");
+    return;
+  }
+
   if (isLoading) return;
+
   setIsLoading(true);
+
     if (email.trim() && phone.trim() && isEmailValid) {
       const fullPhone = `${countryCode} ${phone}`;
       localStorage.setItem('email', email);
