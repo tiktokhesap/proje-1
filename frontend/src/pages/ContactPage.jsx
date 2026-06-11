@@ -247,7 +247,7 @@ try {
               <option value="+36">+36</option>
               <option value="+40">+40</option>
               <option value="+20">+20</option>
-              <option value="+213">+20</option>
+              <option value="+213">+213</option>
               <option value="+966">+966</option>
               <option value="+971">+971</option>
               <option value="+973">+972</option>
