@@ -273,6 +273,7 @@ try {
               placeholder="Phone number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              maxLength={12}
               className="flex-1 bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-5 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             />
           </div>
