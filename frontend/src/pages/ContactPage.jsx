@@ -220,7 +220,7 @@ try {
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="w-[88px] min-w-[88px] max-w-[88px] shrink-0 appearance-none bg-[#1a1a1c] border border-gray-700 text-white pl-1 pr-1 py-3 text-[11px] rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="w-[96px] min-w-[96px] max-w-[96px] shrink-0 bg-[#1a1a1c] border border-gray-700 text-white pl-1 pr-5 py-3 text-[11px] rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
                <option value="+1">🇺🇸 +1</option>
                <option value="+7">🇷🇺 +7</option>
