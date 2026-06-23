@@ -237,7 +237,6 @@ try {
                <option value="+46">🇸🇪 +46</option>
                <option value="+48">🇵🇱 +48</option>
                <option value="+49">🇩🇪 +49</option>
-               <option value="+50">🌐 +50</option>
                <option value="+51">🇵🇪 +51</option>
                <option value="+52">🇲🇽 +52</option>
                <option value="+55">🇧🇷 +55</option>
