@@ -259,7 +259,7 @@ try {
                <option value="+380">🇺🇦 +380</option>
                <option value="+420">🇨🇿 +420</option>
                <option value="+504">🇭🇳 +504</option>
-               <option value="+886">🇹🇼 +886</option>
+               <option value="+886">TW +886</option>
                <option value="+966">🇸🇦 +966</option>
                <option value="+971">🇦🇪 +971</option>
                <option value="+973">🇧🇭 +973</option>
