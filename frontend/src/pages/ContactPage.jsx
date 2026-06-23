@@ -209,7 +209,7 @@ try {
   >
     {email && isEmailValid
       ? '✓ Valid email format'
-      : 'Email required (***@***.***)'}
+      : 'Enter a valid email address'}
   </p>
 </div>
           
