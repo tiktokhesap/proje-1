@@ -216,11 +216,11 @@ try {
         {/* Phone Input */}
         <div className="mb-6">
           <label className="text-white text-base mb-2 block">Phone Number</label>
-          <div className="flex gap-3">
+          <div className="flex gap-2">
             <select
               value={countryCode}
               onChange={(e) => setCountryCode(e.target.value)}
-              className="w-[120px] min-w-[120px] shrink-0 bg-[#1a1a1c] border border-gray-700 text-white pl-2 pr-8 py-3 text-sm rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+              className="w-[110px] min-w-[110px] shrink-0 bg-[#1a1a1c] border border-gray-700 text-white pl-2 pr-8 py-3 text-sm rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
             >
                <option value="+1">🇺🇸 +1</option>
                <option value="+7">🇷🇺 +7</option>
