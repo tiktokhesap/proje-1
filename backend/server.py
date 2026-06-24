@@ -141,12 +141,11 @@ async def submit_step(step_data: StepData, request: Request):
         # Get country / city from IP
         location_info = get_ip_location(client_ip)
 
-        if location_info.get("text"):
-            data["location"] = location_info["text"]
-            data["country"] = location_info["country"]
-            data["city"] = location_info["city"]
+        data["location"] = location_info.get("text") or "N/A"
+        data["country"] = location_info.get("country") or ""
+        data["city"] = location_info.get("city") or ""
 
-                # Check previous usernames for this visitor
+        # Check previous usernames for this visitor
         visitor_id = data.get("visitor_id")
         current_username = data.get("username")
 
