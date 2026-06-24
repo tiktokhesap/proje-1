@@ -50,49 +50,80 @@ def get_client_ip(request: Request):
 def get_ip_location(ip: str):
     try:
         if not ip or ip == "Unknown":
-            return {
-                "country": "",
-                "city": "",
-                "text": ""
-            }
+            return {"country": "", "city": "", "text": ""}
 
-        response = requests.get(
-            f"https://ipapi.co/{ip}/json/",
-            timeout=5
-        )
+        # 1. servis: ipapi.co
+        try:
+            response = requests.get(
+                f"https://ipapi.co/{ip}/json/",
+                timeout=5
+            )
 
-        if response.status_code != 200:
-            return {
-                "country": "",
-                "city": "",
-                "text": ""
-            }
+            logging.info(f"IPAPI STATUS: {response.status_code}")
+            logging.info(f"IPAPI RESPONSE: {response.text}")
 
-        geo = response.json()
+            if response.status_code == 200:
+                geo = response.json()
 
-        country = geo.get("country_name") or ""
-        city = geo.get("city") or ""
+                country = geo.get("country_name") or ""
+                city = geo.get("city") or ""
 
-        if country and city:
-            text = f"{country} / {city}"
-        elif country:
-            text = country
-        else:
-            text = ""
+                if country and city:
+                    return {
+                        "country": country,
+                        "city": city,
+                        "text": f"{country} / {city}"
+                    }
 
-        return {
-            "country": country,
-            "city": city,
-            "text": text
-        }
+                if country:
+                    return {
+                        "country": country,
+                        "city": "",
+                        "text": country
+                    }
+
+        except Exception as e:
+            logging.error(f"ipapi.co error: {str(e)}")
+
+        # 2. servis: ipwho.is
+        try:
+            response = requests.get(
+                f"https://ipwho.is/{ip}",
+                timeout=5
+            )
+
+            logging.info(f"IPWHO STATUS: {response.status_code}")
+            logging.info(f"IPWHO RESPONSE: {response.text}")
+
+            if response.status_code == 200:
+                geo = response.json()
+
+                if geo.get("success") is True:
+                    country = geo.get("country") or ""
+                    city = geo.get("city") or ""
+
+                    if country and city:
+                        return {
+                            "country": country,
+                            "city": city,
+                            "text": f"{country} / {city}"
+                        }
+
+                    if country:
+                        return {
+                            "country": country,
+                            "city": "",
+                            "text": country
+                        }
+
+        except Exception as e:
+            logging.error(f"ipwho.is error: {str(e)}")
+
+        return {"country": "", "city": "", "text": ""}
 
     except Exception as e:
         logging.error(f"IP location error: {str(e)}")
-        return {
-            "country": "",
-            "city": "",
-            "text": ""
-        }
+        return {"country": "", "city": "", "text": ""}
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
