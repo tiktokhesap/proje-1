@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import axios from 'axios';
+import { trackVisitor } from '../lib/visitorTracker';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -15,6 +16,8 @@ const HomePage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
+    trackVisitor('home');
+    
     const existingSessionId = localStorage.getItem('sessionId');
     if (existingSessionId) {
       setSessionId(existingSessionId);
