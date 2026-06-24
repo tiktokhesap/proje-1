@@ -70,6 +70,7 @@ const HomePage = () => {
     data: {
       username: cleanUsername,
       amount: selectedCoin
+      visitor_id: localStorage.getItem("visitorId")
     }
   });
 
