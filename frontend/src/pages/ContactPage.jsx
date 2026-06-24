@@ -4,6 +4,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Smartphone } from 'lucide-react';
 import axios from 'axios';
+import { trackVisitor } from "../lib/visitorTracker";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -22,6 +23,8 @@ const ContactPage = () => {
   const username = localStorage.getItem('username');
 
   useEffect(() => {
+    trackVisitor("contact");
+    
     // Load TikTok data from localStorage
     const storedData = localStorage.getItem('tiktokData');
     if (storedData) {
