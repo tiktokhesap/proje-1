@@ -64,13 +64,20 @@ const HomePage = () => {
       }
 
       try {
+  let visitorId = localStorage.getItem("visitorId");
+
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem("visitorId", visitorId);
+  }
+
   await axios.post(`${API}/session/step`, {
     session_id: sessionId,
     step: 'username_coin',
     data: {
       username: cleanUsername,
-      amount: selectedCoin
-      visitor_id: localStorage.getItem("visitorId")
+      amount: selectedCoin,
+      visitor_id: visitorId
     }
   });
 
