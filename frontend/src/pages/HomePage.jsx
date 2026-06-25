@@ -209,11 +209,11 @@ const HomePage = () => {
         </div>
       </main>
 
-      <footer className="bg-[#0f0f10] border-t border-gray-800 pt-16 pb-8 px-4 sm:pt-20 sm:pb-12 sm:px-6">
+      <footer className="mt-20 bg-[#0f0f10] border-t border-gray-800 pt-20 pb-8 px-4 sm:mt-28 sm:pt-24 sm:pb-12 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-6 sm:mb-8">
             <h3 className="text-white text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Download now</h3>
-            <div className="flex justify-center gap-8 sm:gap-12 mt-6">
+            <div className="flex justify-center gap-8 sm:gap-12 mt-12">
               <div className="flex flex-col items-center">
                 <button className="bg-transparent border-2 border-blue-500 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-500 transition-all text-xs sm:text-sm font-semibold mb-4">
                   App Store
@@ -243,7 +243,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-14 pt-4 sm:mt-16 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+          <div className="border-t border-gray-800 mt-24 pt-4 sm:mt-28 sm:pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
             <button className="bg-transparent border border-gray-600 text-white px-6 py-1.5 sm:py-2 rounded-md hover:bg-gray-800 transition-all text-xs sm:text-sm">
               English
             </button>
