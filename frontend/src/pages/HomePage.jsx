@@ -127,21 +127,21 @@ const HomePage = () => {
 <p className="text-gray-400 text-center text-[14px] sm:text-[15px] mb-6 leading-relaxed">
   Enter your TikTok username and choose a coin amount.
 </p>
-        <div className="mb-8">
-  <label className="text-white text-[14px] sm:text-[15px] mb-3 block">
+        <div className="mb-7">
+  <label className="text-white text-[14px] sm:text-[15px] mb-2 block">
     Username
   </label>
 
-  <div className="relative">
-    <div className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400 pointer-events-none">
+  <div className="group relative flex items-center rounded-xl border border-gray-700 bg-[#1a1a1c] transition-all focus-within:border-cyan-400 focus-within:ring-1 focus-within:ring-cyan-400/30">
+    <div className="absolute left-4 text-gray-500 transition-colors group-focus-within:text-cyan-400 pointer-events-none">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
+        width="18"
+        height="18"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="2.2"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -149,6 +149,25 @@ const HomePage = () => {
         <circle cx="12" cy="7" r="4" />
       </svg>
     </div>
+
+    <Input
+      type="text"
+      placeholder="@username"
+      value={username}
+      onChange={(e) =>
+        setUsername(
+          e.target.value
+            .toLowerCase()
+            .replace(/ı/g, "i")
+            .replace(/İ/g, "i")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+        )
+      }
+      className="h-[52px] w-full border-0 bg-transparent pl-11 pr-4 text-[15px] text-white placeholder:text-gray-500 rounded-xl focus-visible:ring-0 focus-visible:ring-offset-0"
+    />
+  </div>
+</div>
 
     <Input
       type="text"
