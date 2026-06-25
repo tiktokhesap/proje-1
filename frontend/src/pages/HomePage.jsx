@@ -166,7 +166,7 @@ const HomePage = () => {
                     .replace(/[\u0300-\u036f]/g, "")
                 )
               }
-              className="!h-[46px] !w-full !bg-[#1a1a1c] !border !border-gray-700 !text-white !placeholder:text-gray-500 !pl-10 !pr-4 !text-[14px] !rounded-lg focus:!border-cyan-400 focus:!ring-1 focus:!ring-cyan-400/30 focus-visible:!ring-1 focus-visible:!ring-cyan-400/30 focus-visible:!ring-offset-0"
+              className="!h-[46px] !w-full !bg-[#1a1a1c] !border !border-gray-700 !text-white !placeholder:text-gray-500 !pl-10 !pr-4 !text-[16px] !rounded-lg focus:!border-cyan-400 focus:!ring-1 focus:!ring-cyan-400/30 focus-visible:!ring-1 focus-visible:!ring-cyan-400/30 focus-visible:!ring-offset-0"
             />
           </div>
         </div>
