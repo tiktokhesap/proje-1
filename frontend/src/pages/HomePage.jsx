@@ -113,15 +113,15 @@ const HomePage = () => {
 
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
-  <h1 className="text-[36px] font-black mb-4 tracking-[1px]">
+  <h1 className="text-6xl font-black mb-4">
     <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
       TikTok
     </span>
   </h1>
-  <p className="text-cyan-400 text-[20px] font-semibold mb-[12px]">Get Free Coins</p>
+  <p className="text-cyan-400 text-2xl font-semibold">Get Free Coins</p>
 </div>
 
-<p className="text-gray-400 text-center text-[13px] mb-8">
+<p className="text-gray-400 text-center text-lg mb-8">
   Enter your TikTok username and choose a coin amount.
 </p>
 
