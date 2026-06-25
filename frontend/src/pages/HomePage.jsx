@@ -128,24 +128,46 @@ const HomePage = () => {
   Enter your TikTok username and choose a coin amount.
 </p>
         <div className="mb-8">
-          <label className="text-white text-[14px] sm:text-[15px] mb-2 block">Username</label>
-          <Input
-            type="text"
-            placeholder="@username"
-            value={username}
-            onChange={(e) =>
-  setUsername(
-    e.target.value
-      .toLowerCase()
-      .replace(/ı/g, "i")
-      .replace(/İ/g, "i")
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-  )
-}
-            className="w-full bg-[#1a1a1c] border border-gray-700 text-white placeholder:text-gray-500 px-4 py-6 text-lg rounded-lg focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
-          />
-        </div>
+  <label className="text-white text-[14px] sm:text-[15px] mb-3 block">
+    Username
+  </label>
+
+  <div className="relative">
+    <div className="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-400 pointer-events-none">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M20 21a8 8 0 0 0-16 0" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    </div>
+
+    <Input
+      type="text"
+      placeholder="@username"
+      value={username}
+      onChange={(e) =>
+        setUsername(
+          e.target.value
+            .toLowerCase()
+            .replace(/ı/g, "i")
+            .replace(/İ/g, "i")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+        )
+      }
+      className="w-full h-[76px] bg-[#1a1a1c] border-2 border-cyan-400 text-white placeholder:text-gray-500 pl-16 pr-5 text-[22px] rounded-2xl focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
+    />
+  </div>
+</div>
 
         <div className="mb-8">
           <label className="text-white text-lg mb-4 block">Select Coin Amount</label>
