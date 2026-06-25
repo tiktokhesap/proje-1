@@ -111,20 +111,22 @@ const HomePage = () => {
         </Button>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-12">
-        <div className="text-center mb-12">
-  <h1 className="text-6xl font-black mb-4">
+      <main className="max-w-4xl mx-auto px-6 pt-7 pb-12">
+        <div className="text-center mb-6">
+  <h1 className="text-[42px] sm:text-[48px] font-black mb-2 tracking-[1px] leading-tight">
     <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
       TikTok
     </span>
   </h1>
-  <p className="text-cyan-400 text-2xl font-semibold">Get Free Coins</p>
+
+  <p className="text-cyan-400 text-[18px] sm:text-[20px] font-semibold mb-3 leading-tight">
+    Get Free Coins
+  </p>
 </div>
 
-<p className="text-gray-400 text-center text-lg mb-8">
+<p className="text-gray-400 text-center text-[13px] sm:text-[14px] mb-6 leading-relaxed">
   Enter your TikTok username and choose a coin amount.
 </p>
-
         <div className="mb-8">
           <label className="text-white text-lg mb-3 block">Username</label>
           <Input
