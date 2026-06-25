@@ -124,11 +124,11 @@ const HomePage = () => {
   </p>
 </div>
 
-<p className="text-gray-400 text-center text-[13px] sm:text-[14px] mb-6 leading-relaxed">
+<p className="text-gray-400 text-center text-[14px] sm:text-[15px] mb-6 leading-relaxed">
   Enter your TikTok username and choose a coin amount.
 </p>
         <div className="mb-8">
-          <label className="text-white text-lg mb-3 block">Username</label>
+          <label className="text-white text-[14px] sm:text-[15px] mb-2 block">Username</label>
           <Input
             type="text"
             placeholder="@username"
