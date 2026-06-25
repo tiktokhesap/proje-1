@@ -209,7 +209,7 @@ const HomePage = () => {
         </div>
       </main>
 
-      <footer className="bg-[#0f0f10] border-t border-gray-800 py-8 px-4 sm:py-12 sm:px-6">
+      <footer className="bg-[#0f0f10] border-t border-gray-800 pt-16 pb-8 px-4 sm:pt-20 sm:pb-12 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-6 sm:mb-8">
             <h3 className="text-white text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Download now</h3>
